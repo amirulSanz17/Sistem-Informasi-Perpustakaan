@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Manajemen Anggota')
+@section('title', 'Edit Anggota')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/members/edit.css') }}">
@@ -8,7 +8,6 @@
 
 @section('content')
     <div class="form-card">
-        <div class="icon">✏️</div>
 
         <h1>Edit Anggota</h1>
         <p class="subtitle">

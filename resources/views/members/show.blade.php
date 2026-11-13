@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Manajemen Anggota')
+@section('title', 'Detail Anggota')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/members/show.css') }}">
@@ -38,11 +38,11 @@
 
             <div class="actions">
                 <a href="{{ route('members.edit', $member) }}" class="btn btn-primary">
-                    ✏️ Edit Anggota
+                    Edit Anggota
                 </a>
 
                 <a href="{{ route('members.index') }}" class="btn btn-secondary">
-                    ← Kembali ke Daftar
+                    ← Kembali ke Daftar Anggota
                 </a>
             </div>
         </div>

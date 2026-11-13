@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Manajemen User')
@@ -9,12 +8,21 @@
 
 @section('content')
 <div class="users-page">
-    <h1>Manajemen User</h1>
 
-    <p>
-        Login sebagai: {{ auth()->user()->name }}
-        ({{ ucfirst(auth()->user()->role) }})
-    </p>
+    <div class="users-header">
+        <div>
+            <h1>Manajemen User</h1>
+
+            <p class="page-description">
+                Login sebagai: {{ auth()->user()->name }}
+                ({{ ucfirst(auth()->user()->role) }})
+            </p>
+        </div>
+
+        <a class="users-add" href="{{ route('users.create') }}">
+            + Tambah User
+        </a>
+    </div>
 
     @if (session('success'))
         <p class="users-message">{{ session('success') }}</p>
@@ -31,13 +39,6 @@
             @endforeach
         </ul>
     @endif
-
-    <div class="users-actions">
-        <a class="users-add"
-           href="{{ route('users.create') }}">
-            + Tambah User
-        </a>
-    </div>
 
     <div class="users-table-wrapper">
         <table class="users-table">
@@ -87,6 +88,8 @@
             </tbody>
         </table>
     </div>
+
     {{ $users->links() }}
+
 </div>
 @endsection

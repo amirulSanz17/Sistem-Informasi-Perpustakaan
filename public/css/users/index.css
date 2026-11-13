@@ -1,3 +1,10 @@
+.users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
 
 .users-page h1 {
     color: #032A42;
@@ -5,12 +12,10 @@
     margin: 0 0 12px;
 }
 
-.users-page p {
-    line-height: 1.6;
-}
-
-.users-actions {
-    margin-top: 24px;
+.users-page .page-description {
+    margin-top: 6px;
+    color: #666;
+    font-size: 14px;
 }
 
 .users-page .users-add,
@@ -31,6 +36,7 @@
 .users-page .users-add {
     background: #032A42;
     color: #FFFFFF;
+    white-space: nowrap;
 }
 
 .users-page .users-add:hover {
@@ -38,13 +44,21 @@
 }
 
 .users-page .users-edit {
-    background: #B3926F;
-    color: #FFFFFF;
+    background: #D1E2F3;
+    color: #032A42;
+}
+
+.users-page .users-edit:hover {
+    background: #B8D1E8;
 }
 
 .users-page .users-delete {
-    background: #8B3030;
+    background: #C03939;
     color: #FFFFFF;
+}
+
+.users-page .users-delete:hover {
+    background: #A52D2D;
 }
 
 .users-page .users-table-wrapper {
@@ -100,6 +114,11 @@
 }
 
 @media (max-width: 700px) {
+    .users-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
     .users-page h1 {
         font-size: 25px;
     }
