@@ -3,6 +3,10 @@
 
 @section('title', 'Edit Kategori')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/categories/edit.css') }}">
+@endpush
+
 @section('content')
 <div class="container">
     <h2>Edit Kategori Buku</h2>
