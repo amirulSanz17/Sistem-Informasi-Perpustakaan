@@ -1,0 +1,139 @@
+
+:root {
+    --prussian: #032A42;
+    --columbia: #D1E2F3;
+    --beige: #F0F0DC;
+    --wheat: #F0D8B6;
+    --lion: #B3926F;
+    --lion-dark: #8C6A4D;
+}
+
+.container {
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--prussian);
+    max-width: 820px;
+}
+
+h2 {
+    color: var(--prussian);
+    font-size: 30px;
+    margin: 0 0 20px;
+}
+
+/* Form Card */
+.container form {
+    background: white;
+    border: 1px solid #D9C4AA;
+    border-radius: 13px;
+    padding: 25px;
+    box-shadow: 0 12px 30px rgba(3, 42, 66, 0.10);
+}
+
+/* Form Group */
+.container form > div {
+    margin-bottom: 20px;
+}
+
+/* Label */
+.container label {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--lion-dark);
+    margin-bottom: 8px;
+}
+
+/* Input dan Textarea */
+.container input,
+.container textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--prussian);
+    background: #FCFAF6;
+    border: 1px solid #D9C4AA;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.2s;
+}
+
+.container input {
+    height: 45px;
+}
+
+.container textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* Focus */
+.container input:focus,
+.container textarea:focus {
+    border-color: var(--lion);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(179, 146, 111, 0.15);
+}
+
+/* Error Validation */
+.container form p {
+    color: #dc3545 !important;
+    font-size: 13px;
+    margin: 6px 0 0;
+}
+
+/* Button Simpan */
+.container button {
+    cursor: pointer;
+    padding: 11px 22px;
+    background: var(--lion);
+    color: white;
+    border: 1px solid var(--lion-dark);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.container button:hover {
+    background: var(--prussian);
+    border-color: var(--prussian);
+}
+
+/* Button Kembali */
+.container a {
+    display: inline-block;
+    padding: 11px 22px;
+    margin-left: 8px;
+    background: var(--wheat);
+    color: var(--prussian);
+    text-decoration: none;
+    border: 1px solid var(--lion);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.container a:hover {
+    background: var(--columbia);
+    border-color: var(--prussian);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 25px;
+    }
+
+    .container form {
+        padding: 18px;
+    }
+
+    .container button,
+    .container a {
+        padding: 10px 16px;
+    }
+}

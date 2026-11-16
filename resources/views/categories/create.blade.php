@@ -3,6 +3,10 @@
 
 @section('title', 'Tambah Kategori')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/categories/create.css') }}">
+@endpush
+
 @section('content')
 <div class="container">
     <h2>Tambah Kategori Buku</h2>
