@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -24,11 +23,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 
-    Route::resource('members', MemberController::class);
-    Route::resource('categories', CategoryController::class);
-    Route::resource('books', BookController::class);
+    Route::get('/categories', [CategoryController::class, 'index'])
+        ->name('categories.index');
+
+Route::middleware('role:admin')->group(function () {
+    Route::resource('categories', CategoryController::class)
+        ->except(['index']);
+
+    Route::middleware('can:manage-users')->group(function () {
+        Route::resource('users', UserController::class);
+    });
 });
 
-Route::middleware(['auth', 'can:manage-users'])->group(function(){
-    Route::resource('users', UserController::class);
+    Route::middleware('role:admin,petugas')->group(function () {
+        Route::resource('books', BookController::class);
+        Route::resource('members', MemberController::class);
+    });
 });
