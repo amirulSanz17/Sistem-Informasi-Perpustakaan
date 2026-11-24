@@ -26,17 +26,17 @@ class Borrowing extends Model
         ];
     }
 
-    public function user(): BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function member(): BelongsTo
+    public function member()
     {
         return $this->belongsTo(Member::class);
     }
 
-    public function borrowingDetails(): HasMany
+    public function borrowingDetails()
     {
         return $this->hasMany(BorrowingDetail::class);
     }
