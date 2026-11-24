@@ -41,62 +41,52 @@
     @endif
 
     <div class="detail-card">
-
         {{-- HEADER TRANSAKSI --}}
         <div class="detail-card-header">
             <div>
                 <h3>Informasi Transaksi</h3>
                 <p>ID Transaksi: #{{ $borrowing->id }}</p>
             </div>
-
             @if ($borrowing->status === 'dikembalikan')
                 <span class="status-badge status-returned">
                     Dikembalikan
                 </span>
-
             @elseif ($borrowing->status === 'terlambat')
                 <span class="status-badge status-overdue">
                     Terlambat
                 </span>
-
             @else
                 <span class="status-badge status-borrowed">
                     Dipinjam
                 </span>
             @endif
         </div>
-
         {{-- INFORMASI TRANSAKSI --}}
         <div class="detail-grid">
-
             <div class="detail-item">
                 <span>Nama Anggota</span>
                 <strong>
                     {{ $borrowing->member->name ?? '-' }}
                 </strong>
             </div>
-
             <div class="detail-item">
                 <span>Petugas</span>
                 <strong>
                     {{ $borrowing->user->name ?? '-' }}
                 </strong>
             </div>
-
             <div class="detail-item">
                 <span>Tanggal Peminjaman</span>
                 <strong>
                     {{ $borrowing->borrow_date->format('d-m-Y') }}
                 </strong>
             </div>
-
             <div class="detail-item">
                 <span>Batas Pengembalian (Due Date)</span>
                 <strong>
                     {{ $borrowing->due_date->format('d-m-Y') }}
                 </strong>
             </div>
-
             <div class="detail-item">
                 <span>Tanggal Pengembalian Aktual</span>
                 <strong>
@@ -105,38 +95,28 @@
                         : 'Belum dikembalikan' }}
                 </strong>
             </div>
-
             <div class="detail-item">
                 <span>Status Transaksi</span>
-
                 @if ($borrowing->status === 'dikembalikan')
                     <strong class="text-success">
                         Sudah Dikembalikan
                     </strong>
-
                 @elseif ($borrowing->status === 'terlambat')
                     <strong class="text-danger">
                         Terlambat
                     </strong>
-
                 @else
                     <strong class="text-warning">
                         Sedang Dipinjam
                     </strong>
                 @endif
             </div>
-
         </div>
-
         {{-- DETAIL BUKU --}}
         <div class="detail-books">
-
             <h3>Daftar Buku yang Dipinjam</h3>
-
             <div class="table-container">
-
                 <table class="borrowing-table">
-
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -146,74 +126,52 @@
                             <th>Jumlah</th>
                         </tr>
                     </thead>
-
                     <tbody>
-
                         @forelse ($borrowing->borrowingDetails as $detail)
-
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-
                                 <td>
                                     {{ $detail->book->title ?? 'Buku tidak tersedia' }}
                                 </td>
-
                                 <td>
                                     {{ $detail->book->author ?? '-' }}
                                 </td>
-
                                 <td>
                                     {{ $detail->book->category->name ?? '-' }}
                                 </td>
-
                                 <td>
                                     {{ $detail->quantity }}
                                 </td>
                             </tr>
-
                         @empty
-
                             <tr>
                                 <td colspan="5" class="empty-state">
                                     Tidak ada detail buku.
                                 </td>
                             </tr>
-
                         @endforelse
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
-
         {{-- FORM PENGEMBALIAN --}}
         @if ($borrowing->status !== 'dikembalikan')
-
             <div class="return-section" id="return-form">
-
                 <h3>Form Pengembalian Buku</h3>
-
                 <p>
                     Isi tanggal ketika buku benar-benar diterima kembali
                     oleh petugas.
                 </p>
-
                 <form
                     action="{{ route('borrowings.return', $borrowing->id) }}"
                     method="POST"
                     onsubmit="return confirm('Apakah kamu yakin ingin memproses pengembalian buku ini?')"
                 >
                     @csrf
-
                     <div class="form-group">
-
                         <label for="return_date">
                             Tanggal Pengembalian Aktual
                         </label>
-
                         <input
                             type="date"
                             name="return_date"
@@ -223,49 +181,33 @@
                             max="{{ now()->toDateString() }}"
                             required
                         >
-
                         <small>
                             Isi tanggal aktual saat buku diterima kembali.
                         </small>
-
                     </div>
-
                     <button type="submit" class="btn btn-return">
                         Konfirmasi Pengembalian
                     </button>
-
                 </form>
-
             </div>
-
         @else
-
             {{-- INFORMASI JIKA SUDAH DIKEMBALIKAN --}}
             <div class="returned-info">
-
                 <h3>Buku Sudah Dikembalikan</h3>
-
                 <p>
                     Transaksi ini telah diselesaikan pada tanggal
                     <strong>
                         {{ $borrowing->return_date->format('d-m-Y') }}
                     </strong>.
                 </p>
-
             </div>
-
         @endif
-
         {{-- TOMBOL KEMBALI --}}
         <div class="detail-actions">
-
             <a href="{{ route('borrowings.index') }}" class="btn btn-back">
                 Kembali ke Daftar Peminjaman
             </a>
-
         </div>
-
     </div>
-
 </div>
 @endsection

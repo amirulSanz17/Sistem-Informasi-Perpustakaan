@@ -37,10 +37,8 @@ Route::middleware('role:admin')->group(function () {
 });
 
     Route::middleware('role:admin,petugas')->group(function () {
-        // Peminjaman
         Route::resource('borrowings', BorrowingController::class)
             ->only(['index', 'create', 'store', 'show']);
-        // Pengembalian buku
         Route::post(
             '/borrowings/{borrowing}/return',
             [BorrowingController::class, 'returnBook']
