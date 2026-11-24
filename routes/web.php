@@ -6,7 +6,6 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\BorrowingController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLogin'])
@@ -37,12 +36,6 @@ Route::middleware('role:admin')->group(function () {
 });
 
     Route::middleware('role:admin,petugas')->group(function () {
-        Route::resource('borrowings', BorrowingController::class)
-            ->only(['index', 'create', 'store', 'show']);
-        Route::post(
-            '/borrowings/{borrowing}/return',
-            [BorrowingController::class, 'returnBook']
-        )->name('borrowings.return');
         Route::resource('books', BookController::class);
         Route::resource('members', MemberController::class);
     });
