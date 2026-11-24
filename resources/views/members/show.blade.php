@@ -38,11 +38,11 @@
 
             <div class="actions">
                 <a href="{{ route('members.edit', $member) }}" class="btn btn-primary">
-                    Edit Anggota
+                    Edit Anggota 
                 </a>
 
                 <a href="{{ route('members.index') }}" class="btn btn-secondary">
-                    ← Kembali ke Daftar Anggota
+                    Kembali
                 </a>
             </div>
         </div>
