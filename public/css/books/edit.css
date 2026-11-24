@@ -1,0 +1,99 @@
+.books-form-page {
+    color: #032A42;
+}
+
+.books-form-page .form-card {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(3, 42, 66, 0.08);
+}
+
+.books-form-page h1 {
+    margin-bottom: 8px;
+    color: #032A42;
+    font-size: 28px;
+}
+
+.books-form-page .subtitle {
+    margin-bottom: 25px;
+    color: #526777;
+}
+
+.books-form-page .error {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: #fdeaea;
+    color: #b42318;
+}
+
+.books-form-page .form-group {
+    margin-bottom: 18px;
+}
+
+.books-form-page label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #032A42;
+}
+
+.books-form-page input,
+.books-form-page select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #B3926F;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.books-form-page input:focus,
+.books-form-page select:focus {
+    outline: 2px solid #D1E2F3;
+    border-color: #032A42;
+}
+
+.books-form-page .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.books-form-page .btn-primary,
+.books-form-page .btn-secondary {
+    display: inline-block;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.books-form-page .btn-primary {
+    background: #032A42;
+    color: white;
+}
+
+.books-form-page .btn-secondary {
+    background: #B3926F;
+    color: white;
+}
+
+.books-form-page .btn-primary:hover {
+    background: #21465C;
+}
+
+.books-form-page .btn-secondary:hover {
+    background: #987653;
+}
+
+@media (max-width: 600px) {
+    .books-form-page .form-card {
+        padding: 20px;
+    }
+}
