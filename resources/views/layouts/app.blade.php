@@ -27,8 +27,7 @@
             <a href="{{ route('categories.index') }}">Categories</a>
             <a href="{{ route('members.index') }}">Members</a>
             @can('manage-users')
-            <a href="{{ route('users.index') }}">Kelola Pengguna
-            </a>
+            <a href="{{ route('users.index') }}">Users</a>
             @endcan
         </nav>
 
