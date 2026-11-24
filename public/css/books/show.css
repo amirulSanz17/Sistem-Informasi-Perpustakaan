@@ -1,0 +1,132 @@
+.books-show-page {
+    color: #032A42;
+}
+
+.books-show-page .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.books-show-page h1 {
+    margin-bottom: 8px;
+    font-size: 28px;
+    color: #032A42;
+}
+
+.books-show-page .subtitle {
+    color: #526777;
+}
+
+.books-show-page .detail-card {
+    max-width: 850px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(3, 42, 66, 0.08);
+}
+
+.books-show-page .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5eaf0;
+}
+
+.books-show-page .detail-header h2 {
+    font-size: 22px;
+    color: #032A42;
+}
+
+.books-show-page .book-category {
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #D1E2F3;
+    color: #032A42;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.books-show-page .detail-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.books-show-page .detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.books-show-page .detail-item span {
+    color: #526777;
+    font-size: 13px;
+}
+
+.books-show-page .detail-item strong {
+    color: #032A42;
+    font-size: 15px;
+}
+
+.books-show-page .detail-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e5eaf0;
+}
+
+.books-show-page .detail-actions form {
+    margin: 0;
+}
+
+.books-show-page .btn-secondary,
+.books-show-page .btn-edit,
+.books-show-page .btn-delete {
+    display: inline-block;
+    padding: 10px 17px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.books-show-page .btn-secondary {
+    background: #B3926F;
+    color: white;
+}
+
+.books-show-page .btn-edit {
+    background: #D1E2F3;
+    color: #032A42;
+}
+
+.books-show-page .btn-delete {
+    background: #b83b3b;
+    color: white;
+}
+
+@media (max-width: 600px) {
+    .books-show-page .detail-card {
+        padding: 20px;
+    }
+
+    .books-show-page .detail-content {
+        grid-template-columns: 1fr;
+    }
+
+    .books-show-page .detail-header,
+    .books-show-page .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

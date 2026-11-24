@@ -1,98 +1,114 @@
+
 @extends('layouts.app')
 
-@section('title', 'Manajemen Anggota')
+@section('title', 'Manajemen Kategori')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/categories/index.css') }}">
 @endpush
 
 @section('content')
-<div class="container">
-    <h2>Daftar Kategori Buku</h2>
+    <div class="categories-page">
 
-    @if (session('success'))
-        <p class="alert-success">
-            {{ session('success') }}
-        </p>
-    @endif
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Daftar Kategori Buku</h1>
+                <p class="page-description">
+                    Kelola kategori buku perpustakaan.
+                </p>
+            </div>
 
-    @if (session('error'))
-        <p class="alert-error">
-            {{ session('error') }}
-        </p>
-    @endif
-
-    @if ($errors->any())
-        <div class="alert-error">
-            <ul style="margin: 0; padding-left: 20px;">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary">
+                + Tambah Kategori
+            </a>
         </div>
-    @endif
 
-    <a href="{{ route('categories.create') }}" class="btn-add">
-        + Tambah Kategori
-    </a>
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Nama Kategori</th>
-                    <th>Deskripsi</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
+        @if (session('error'))
+            <div class="alert alert-error">
+                {{ session('error') }}
+            </div>
+        @endif
 
-            <tbody>
-                @forelse ($categories as $category)
+        @if ($errors->any())
+            <div class="alert alert-error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <div class="table-container">
+            <table class="category-table">
+                <thead>
                     <tr>
-                        <td>
-                            {{ $categories->firstItem() + $loop->index }}
-                        </td>
-
-                        <td>{{ $category->name }}</td>
-
-                        <td>
-                            {{ $category->description ?: '-' }}
-                        </td>
-
-                        <td>
-                            <a href="{{ route('categories.edit', $category->id) }}">
-                                Edit
-                            </a>
-                            
-                            |
-
-                            <form
-                                action="{{ route('categories.destroy', $category->id) }}"
-                                method="POST"
-                                class="action-form"
-                                onsubmit="return confirm('Yakin ingin menghapus kategori ini?')">
-
-                                @csrf
-                                @method('DELETE')
-
-                                <button type="submit" class="btn-delete">Hapus</button>
-                            </form>
-                        </td>
+                        <th>No.</th>
+                        <th>Nama Kategori</th>
+                        <th>Deskripsi</th>
+                        <th>Aksi</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="4" style="text-align: center;">
-                            Belum ada data kategori.
-                        </td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
+                </thead>
 
-    <div class="pagination-wrapper">
-        {{ $categories->links() }}
+                <tbody>
+                    @forelse ($categories as $category)
+                        <tr>
+                            <td>
+                                {{ $categories->firstItem() + $loop->index }}
+                            </td>
+
+                            <td>{{ $category->name }}</td>
+
+                            <td>
+                                {{ $category->description ?? '-' }}
+                            </td>
+
+                            <td>
+                                <div class="action-buttons">
+
+                                    <a
+                                        href="{{ route('categories.edit', $category->id) }}"
+                                        class="btn btn-edit"
+                                    >
+                                        Edit
+                                    </a>
+
+                                    <form
+                                        action="{{ route('categories.destroy', $category->id) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus kategori ini?')"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-delete">
+                                            Hapus
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                Belum ada data kategori.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination-wrapper">
+            {{ $categories->links() }}
+        </div>
+
     </div>
-</div>
 @endsection
