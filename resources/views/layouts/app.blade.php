@@ -19,7 +19,8 @@
 
         <nav class="app-nav">
             <a href="/dashboard">Dashboard</a>
-            <a href="/books">Books</a>
+            <a href="{{ route('borrowings.index') }}">Borrowings</a>
+            <a href="{{ route('books.index') }}">Books</a>
             <a href="{{ route('categories.index') }}">Categories</a>
             <a href="{{ route('members.index') }}">Members</a>
             @can('manage-users')
