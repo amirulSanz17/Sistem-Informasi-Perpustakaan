@@ -13,7 +13,9 @@
 <body>
 
     <div class="login-card">
-        <div class="logo">📚</div>
+        <div class="logo">
+            <img src="{{ asset('images/logo-perpustakaan.png') }}" alt="Logo Perpustakaan">
+        </div>
 
         <h1>Selamat Datang</h1>
         <p class="subtitle">Sistem Informasi Perpustakaan</p>

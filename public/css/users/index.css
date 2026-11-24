@@ -1,15 +1,21 @@
-.users-header {
+.users-page {
+    color: #032A42;
+}
+
+.users-page .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
+    flex-wrap: wrap;
     margin-bottom: 24px;
 }
 
-.users-page h1 {
+.users-page .page-title {
+    margin: 0;
     color: #032A42;
-    font-size: 30px;
-    margin: 0 0 12px;
+    font-size: 28px;
+    font-weight: 700;
 }
 
 .users-page .page-description {
@@ -18,112 +24,137 @@
     font-size: 14px;
 }
 
-.users-page .users-add,
-.users-page .users-edit,
-.users-page .users-delete {
-    display: inline-block;
-    padding: 10px 15px;
+.users-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
     border: none;
     border-radius: 8px;
-    text-decoration: none;
-    font-family: inherit;
     font-size: 14px;
     font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
-.users-page .users-add {
+.users-page .btn-primary {
     background: #032A42;
-    color: #FFFFFF;
-    white-space: nowrap;
+    color: #fff;
 }
 
-.users-page .users-add:hover {
-    background: #064667;
+.users-page .btn-primary:hover {
+    background: #064363;
 }
 
-.users-page .users-edit {
+.users-page .btn-edit {
     background: #D1E2F3;
     color: #032A42;
 }
 
-.users-page .users-edit:hover {
-    background: #B8D1E8;
+.users-page .btn-edit:hover {
+    background: #b9d4ed;
 }
 
-.users-page .users-delete {
-    background: #C03939;
-    color: #FFFFFF;
+.users-page .btn-delete {
+    background: #b83b3b;
+    color: #fff;
 }
 
-.users-page .users-delete:hover {
-    background: #A52D2D;
+.users-page .btn-delete:hover {
+    background: #922d2d;
 }
 
-.users-page .users-table-wrapper {
+.users-page .alert {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.users-page .alert-success {
+    background: #e4f5e8;
+    color: #216b35;
+    border: 1px solid #b8e3c2;
+}
+
+.users-page .alert-error {
+    background: #fdeaea;
+    color: #b42318;
+    border: 1px solid #f5c2c2;
+}
+
+.users-page .table-container {
     width: 100%;
-    margin-top: 24px;
     overflow-x: auto;
-    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
 }
 
-.users-page .users-table {
+.users-page .user-table {
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    background: #FFFFFF;
+    border-collapse: collapse;
+    min-width: 650px;
 }
 
-.users-page .users-table th,
-.users-page .users-table td {
-    padding: 15px 16px;
-    text-align: left;
-    border-bottom: 1px solid #D1E2F3;
-}
-
-.users-page .users-table th {
+.users-page .user-table thead {
     background: #032A42;
-    color: #FFFFFF;
+    color: #fff;
 }
 
-.users-page .users-table tbody tr:nth-child(even) td {
-    background: #F4F7FA;
+.users-page .user-table th,
+.users-page .user-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
 }
 
-.users-page .users-table tbody tr:hover td {
-    background: #F0D8B6;
+.users-page .user-table th {
+    font-weight: 600;
+    white-space: nowrap;
 }
 
-.users-page .users-table form {
-    display: inline;
+.users-page .user-table tbody tr:hover {
+    background: #f4f8fc;
 }
 
-.users-page .users-message {
-    padding: 12px 15px;
-    color: #27633B;
-    background: #E7F3E8;
-    border-radius: 8px;
+.users-page .user-table tbody tr:last-child td {
+    border-bottom: none;
 }
 
-.users-page .users-error {
-    padding: 12px 15px;
-    color: #8B3030;
-    background: #FBEAEA;
-    border-radius: 8px;
+.users-page .action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-@media (max-width: 700px) {
-    .users-header {
+.users-page .action-buttons form {
+    margin: 0;
+}
+
+.users-page .empty-state {
+    padding: 32px 16px;
+    text-align: center;
+    color: #777;
+}
+
+.users-page .pagination-wrapper {
+    margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+    .users-page .page-title {
+        font-size: 23px;
+    }
+
+    .users-page .page-header {
         align-items: flex-start;
-        flex-direction: column;
     }
 
-    .users-page h1 {
-        font-size: 25px;
-    }
-
-    .users-page .users-table {
-        min-width: 580px;
+    .users-page .btn {
+        padding: 9px 12px;
     }
 }
