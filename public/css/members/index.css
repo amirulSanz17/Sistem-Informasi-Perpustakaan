@@ -135,6 +135,116 @@
     color: #777;
 }
 
+.members-page .pagination-wrapper {
+    margin-top: 24px;
+    width: 100%;
+}
+
+.members-page .pagination-wrapper nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+.members-page .pagination-wrapper nav > div:first-child {
+    display: none;
+}
+
+.members-page .pagination-wrapper nav > div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+.members-page .pagination-wrapper nav p {
+    margin: 0;
+    color: #526777;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.members-page .pagination-wrapper nav p span {
+    color: #032A42;
+    font-weight: 600;
+}
+
+.members-page .pagination-wrapper nav > div:last-child > div:last-child > span {
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #D1E2F3;
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+
+.members-page .pagination-wrapper nav a,
+.members-page .pagination-wrapper nav span[aria-current="page"],
+.members-page .pagination-wrapper nav span[aria-disabled="true"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 8px 12px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.members-page .pagination-wrapper nav a {
+    color: #032A42;
+    background: #FFFFFF;
+}
+
+.members-page .pagination-wrapper nav a:hover {
+    color: #FFFFFF;
+    background: #032A42;
+}
+
+.members-page .pagination-wrapper nav span[aria-current="page"] {
+    color: #FFFFFF;
+    background: #032A42;
+}
+
+.members-page .pagination-wrapper nav span[aria-disabled="true"] {
+    color: #A0AAB2;
+    background: #F4F7F9;
+}
+
+.members-page .pagination-wrapper nav svg {
+    width: 16px;
+    height: 16px;
+}
+
+@media (max-width: 600px) {
+    .members-page .pagination-wrapper nav > div:last-child {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .members-page .pagination-wrapper nav p {
+        font-size: 12px;
+    }
+
+    .members-page .pagination-wrapper nav a,
+    .members-page .pagination-wrapper nav span[aria-current="page"],
+    .members-page .pagination-wrapper nav span[aria-disabled="true"] {
+        min-width: 34px;
+        min-height: 34px;
+        padding: 7px 10px;
+    }
+}
+
+
 @media (max-width: 600px) {
     .members-page .page-title {
         font-size: 23px;

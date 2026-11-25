@@ -44,6 +44,95 @@
         </div>
     @endif
 
+    {{-- SEARCHING DAN FILTERING --}}
+    <div class="filter-card">
+
+        <form action="{{ route('books.index') }}" method="GET">
+
+            <div class="filter-grid">
+
+                {{-- SEARCH --}}
+                <div class="filter-group search-group">
+                    <label for="search">Cari Buku</label>
+
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        value="{{ request('search') }}"
+                        placeholder="Cari judul, penulis, atau penerbit..."
+                    >
+                </div>
+
+                {{-- FILTER KATEGORI --}}
+                <div class="filter-group">
+                    <label for="category_id">Kategori</label>
+
+                    <select name="category_id" id="category_id">
+                        <option value="">Semua Kategori</option>
+
+                        @foreach ($categories as $category)
+                            <option
+                                value="{{ $category->id }}"
+                                {{ request('category_id') == $category->id ? 'selected' : '' }}
+                            >
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                {{-- FILTER STOK --}}
+                <div class="filter-group">
+                    <label for="stock_status">Ketersediaan Stok</label>
+
+                    <select name="stock_status" id="stock_status">
+                        <option value="">Semua Stok</option>
+
+                        <option
+                            value="available"
+                            {{ request('stock_status') === 'available' ? 'selected' : '' }}
+                        >
+                            Tersedia
+                        </option>
+
+                        <option
+                            value="out"
+                            {{ request('stock_status') === 'out' ? 'selected' : '' }}
+                        >
+                            Habis
+                        </option>
+                    </select>
+                </div>
+
+            </div>
+
+            {{-- TOMBOL FILTER --}}
+            <div class="filter-actions">
+
+                <button type="submit" class="btn btn-filter">
+                    Cari / Filter
+                </button>
+
+                <a href="{{ route('books.index') }}" class="btn btn-reset">
+                    Reset
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    {{-- INFORMASI HASIL --}}
+    <div class="table-info">
+        Menampilkan
+        <strong>{{ $books->firstItem() ?? 0 }}–{{ $books->lastItem() ?? 0 }}</strong>
+        dari
+        <strong>{{ $books->total() }}</strong>
+        buku
+    </div>
+
     <div class="table-container">
         <table class="book-table">
             <thead>
