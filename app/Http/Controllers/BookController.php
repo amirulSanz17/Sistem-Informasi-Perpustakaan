@@ -8,13 +8,43 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::with('category')
-            ->latest()
-            ->paginate(10);
+        $query = Book::with('category');
 
-        return view('books.index', compact('books'));
+        // Searching berdasarkan judul, penulis, atau penerbit
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%{$search}%")
+                    ->orWhere('author', 'like', "%{$search}%")
+                    ->orWhere('publisher', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter berdasarkan kategori
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        // Filter berdasarkan kondisi stok
+        if ($request->stock_status === 'available') {
+            $query->where('stock', '>', 0);
+        } elseif ($request->stock_status === 'out') {
+            $query->where('stock', '=', 0);
+        }
+
+        // Urutkan dan tampilkan 10 data per halaman
+        $books = $query
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        // Data kategori untuk dropdown filter
+        $categories = Category::orderBy('name')->get();
+
+        return view('books.index', compact('books', 'categories'));
     }
 
     public function create()

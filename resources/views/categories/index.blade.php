@@ -23,6 +23,35 @@
             </a>
         </div>
 
+    <div class="filter-card">
+        <form action="{{ route('categories.index') }}" method="GET">
+            <div class="filter-grid">
+                {{-- SEARCH --}}
+                <div class="filter-group search-group">
+                    <label for="search">Pencarian</label>
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        value="{{ request('search') }}"
+                        placeholder="Cari Nama Kategori atau Deskripsi"
+                    >
+                </div>
+            </div>
+
+            {{-- TOMBOL FILTER --}}
+            <div class="categories-actions">
+
+                <button type="submit" class="btn btn-filter">
+                    Cari
+                </button>
+                <a href="{{ route('categories.index') }}" class="btn btn-reset">
+                    Reset
+                </a>
+            </div>
+        </form>
+    </div>
+
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}

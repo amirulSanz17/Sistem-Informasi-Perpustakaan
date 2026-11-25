@@ -15,44 +15,64 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Pemrograman',
-                'description' => 'Buku mengenai bahasa pemrograman dan pengembangan software.',
+                'name' => 'Fiksi Ilmiah',
+                'description' => 'Cerita fiksi bertema teknologi masa depan, luar angkasa, dan sains.',
             ],
             [
-                'name' => 'Teknologi Informasi',
-                'description' => 'Buku mengenai teknologi informasi dan komputer.',
+                'name' => 'Sejarah Dunia',
+                'description' => 'Buku mengenai peristiwa sejarah peradaban dan tokoh dunia.',
             ],
             [
-                'name' => 'Basis Data',
-                'description' => 'Buku mengenai database dan pengelolaan data.',
+                'name' => 'Psikologi',
+                'description' => 'Pembahasan mengenai perilaku manusia, mental, dan pikiran.',
             ],
             [
-                'name' => 'Jaringan Komputer',
-                'description' => 'Buku mengenai jaringan komputer dan infrastruktur jaringan.',
+                'name' => 'Bisnis & Manajemen',
+                'description' => 'Panduan kewirausahaan, strategi bisnis, dan kepemimpinan.',
             ],
             [
-                'name' => 'Sistem Informasi',
-                'description' => 'Buku mengenai analisis dan pengembangan sistem informasi.',
+                'name' => 'Pengembangan Diri',
+                'description' => 'Buku motivasi, produktivitas, dan peningkatan kualitas hidup.',
             ],
             [
-                'name' => 'Kecerdasan Buatan',
-                'description' => 'Buku mengenai artificial intelligence dan machine learning.',
+                'name' => 'Sains Populer',
+                'description' => 'Penjelasan fenomena alam, fisika, dan biologi untuk pembaca umum.',
             ],
             [
-                'name' => 'Desain Grafis',
-                'description' => 'Buku mengenai desain visual, ilustrasi, dan multimedia.',
+                'name' => 'Filsafat',
+                'description' => 'Pemikiran kritis mengenai eksistensi, etika, dan pengetahuan.',
             ],
             [
-                'name' => 'Keamanan Siber',
-                'description' => 'Buku mengenai keamanan jaringan, data, dan sistem komputer.',
+                'name' => 'Biografi',
+                'description' => 'Kisah nyata perjalanan hidup tokoh-tokoh inspiratif.',
             ],
             [
-                'name' => 'Novel',
-                'description' => 'Kumpulan buku cerita dan karya fiksi.',
+                'name' => 'Kuliner & Resep',
+                'description' => 'Buku panduan memasak, kuliner nusantara, dan mancanegara.',
             ],
             [
-                'name' => 'Pendidikan',
-                'description' => 'Buku mengenai pembelajaran, pendidikan, dan pengembangan ilmu pengetahuan.',
+                'name' => 'Seni & Fotografi',
+                'description' => 'Buku mengenai teknik fotografi, seni rupa, dan estetika visual.',
+            ],
+            [
+                'name' => 'Ekonomi & Investasi',
+                'description' => 'Pembahasan literasi keuangan, pasar modal, dan ekonomi makro.',
+            ],
+            [
+                'name' => 'Sastra & Puisi',
+                'description' => 'Kumpulan antologi puisi, prosa, dan karya sastra klasik.',
+            ],
+            [
+                'name' => 'Arsitektur & Interior',
+                'description' => 'Konsep rancang bangun, tata ruang, dan desain interior.',
+            ],
+            [
+                'name' => 'Kesehatan & Kebugaran',
+                'description' => 'Panduan gaya hidup sehat, nutrisi, dan olahraga.',
+            ],
+            [
+                'name' => 'Misteri & Thriller',
+                'description' => 'Novel fiksi bertema detektif, teka-teki, dan ketegangan.',
             ],
         ];
 
