@@ -15,7 +15,10 @@
 
 <body>
     <header class="app-header">
-        <a href="/dashboard" class="brand">Library System</a>
+        <a href="/dashboard" class="brand">
+            <img src="{{ asset('images/logo-perpustakaan-1.png') }}" alt="Logo Perpustakaan">
+            <span>Library System</span>
+        </a>
 
         <nav class="app-nav">
             <a href="/dashboard">Dashboard</a>
@@ -24,8 +27,7 @@
             <a href="{{ route('categories.index') }}">Categories</a>
             <a href="{{ route('members.index') }}">Members</a>
             @can('manage-users')
-            <a href="{{ route('users.index') }}">Kelola Pengguna
-            </a>
+            <a href="{{ route('users.index') }}">Users</a>
             @endcan
         </nav>
 

@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Edit Kategori')
@@ -8,56 +7,57 @@
 @endpush
 
 @section('content')
-<div class="container">
-    <h2>Edit Kategori Buku</h2>
+<div class="categories-form-page">
+    <div class="form-card">
 
-    <form
-        action="{{ route('categories.update', $category->id) }}"
-        method="POST"
-    >
-        @csrf
-        @method('PUT')
+        <h1>Edit Kategori</h1>
+        <p class="subtitle">Perbarui informasi kategori yang dipilih.</p>
 
-        <div>
-            <label for="name">Nama Kategori</label><br>
+        @if ($errors->any())
+            <div class="error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-            <input
-                type="text"
-                id="name"
-                name="name"
-                value="{{ old('name', $category->name) }}"
-                required
-                maxlength="255"
-            >
+        <form action="{{ route('categories.update', $category->id) }}" method="POST">
+            @csrf
+            @method('PUT')
 
-            @error('name')
-                <p style="color: red;">{{ $message }}</p>
-            @enderror
-        </div>
+            <div class="form-group">
+                <label for="name">Nama Kategori</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="{{ old('name', $category->name) }}"
+                    required
+                >
+            </div>
 
-        <br>
+            <div class="form-group">
+                <label for="description">Deskripsi</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="4"
+                >{{ old('description', $category->description) }}</textarea>
+            </div>
 
-        <div>
-            <label for="description">Deskripsi</label><br>
+            <div class="actions">
+                <button type="submit" class="btn-primary">
+                    Simpan Perubahan
+                </button>
 
-            <textarea
-                id="description"
-                name="description"
-                rows="4"
-            >{{ old('description', $category->description) }}</textarea>
+                <a href="{{ route('categories.index') }}" class="btn-secondary">
+                    Kembali
+                </a>
+            </div>
+        </form>
 
-            @error('description')
-                <p style="color: red;">{{ $message }}</p>
-            @enderror
-        </div>
-
-        <br>
-
-        <button type="submit">Update</button>
-
-        <a href="{{ route('categories.index') }}">
-            Kembali
-        </a>
-    </form>
+    </div>
 </div>
 @endsection
