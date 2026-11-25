@@ -21,6 +21,71 @@
             + Tambah Peminjaman
         </a>
     </div>
+
+    {{-- SEARCHING DAN FILTERING --}}
+    <div class="filter-container">
+        <form action="{{ route('borrowings.index') }}" method="GET">
+            <div class="filter-top">
+                <div class="search-group">
+                    <label for="search">Pencarian</label>
+                    <input
+                        type="text"
+                        id="search"
+                        name="search"
+                        value="{{ request('search') }}"
+                        placeholder="Cari nama anggota atau petugas..."
+                    >
+                </div>
+                <div class="status-group">
+                    <label for="status">Status Peminjaman</label>
+                    <select name="status" id="status">
+                        <option value="">Semua Status</option>
+                        <option value="dipinjam"
+                            {{ request('status') == 'dipinjam' ? 'selected' : '' }}>
+                            Dipinjam
+                        </option>
+                        <option value="terlambat"
+                            {{ request('status') == 'terlambat' ? 'selected' : '' }}>
+                            Terlambat
+                        </option>
+                        <option value="dikembalikan"
+                            {{ request('status') == 'dikembalikan' ? 'selected' : '' }}>
+                            Dikembalikan
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-bottom">
+                <div class="date-group">
+                    <label for="date_from">Tanggal Mulai Pinjam</label>
+                    <input
+                        type="date"
+                        id="date_from"
+                        name="date_from"
+                        value="{{ request('date_from') }}"
+                    >
+                </div>
+                <div class="date-group">
+                    <label for="date_to">Tanggal Akhir Pinjam</label>
+                    <input
+                        type="date"
+                        id="date_to"
+                        name="date_to"
+                        value="{{ request('date_to') }}"
+                    >
+                </div>
+                <div class="filter-actions">
+                    <button type="submit" class="btn btn-filter">
+                        Cari / Filter
+                    </button>
+                    <a href="{{ route('borrowings.index') }}" class="btn btn-reset">
+                        Reset
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}

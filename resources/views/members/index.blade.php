@@ -22,6 +22,55 @@
             </a>
         </div>
 
+        <div class="filter-card">
+            <form action="{{ route('members.index') }}" method="GET">
+
+                <div class="filter-grid">
+
+                    {{-- SEARCH --}}
+                    <div class="filter-group search-group">
+                        <label for="search">Pencarian</label>
+                        <input
+                            type="text"
+                            name="search"
+                            id="search"
+                            value="{{ request('search') }}"
+                            placeholder="Cari Nama, Email, Telepon, atau Alamat"
+                        >
+                    </div>
+
+                    {{-- FILTER ADDRESS --}}
+                    <div class="filter-group">
+                        <label for="address">Filter Berdasarkan Alamat</label>
+                        <select name="address" id="address">
+                            <option value="">Semua Alamat</option>
+
+                            @foreach ($addresses as $address)
+                                <option
+                                    value="{{ $address->address }}"
+                                    {{ request('address') == $address->address ? 'selected' : '' }}
+                                >
+                                    {{ $address->address }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="members-actions">
+                    <button type="submit" class="btn btn-filter">
+                        Cari
+                    </button>
+
+                    <a href="{{ route('members.index') }}" class="btn btn-reset">
+                        Reset
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
         @if (session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -41,10 +90,13 @@
                     </tr>
                 </thead>
 
+                <?php
+                $n= 1
+                ?>
                 <tbody>
                     @forelse ($members as $member)
                         <tr>
-                            <td>{{ $members->firstItem() + $loop->index }}</td>
+                            <td>{{ $n++ }}</td>
                             <td>{{ $member->name }}</td>
                             <td>{{ $member->email ?? '-' }}</td>
                             <td>{{ $member->phone ?? '-' }}</td>

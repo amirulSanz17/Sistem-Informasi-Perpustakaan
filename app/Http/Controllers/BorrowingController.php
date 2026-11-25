@@ -13,22 +13,64 @@ use Carbon\Carbon;
 class BorrowingController extends Controller
 {
     // Menampilkan seluruh transaksi peminjaman
-    public function index()
+    public function index(Request $request)
     {
-        // Mengubah status menjadi terlambat jika due date sudah lewat
-        Borrowing::where('status', 'dipinjam')
-            ->whereDate('due_date', '<', now()->toDateString())
-            ->update([
-                'status' => 'terlambat'
-            ]);
-        $borrowings = Borrowing::with([
-            'user',
-            'member'
-        ])
-            ->latest()
-            ->paginate(10);
-        return view('borrowings.index', compact('borrowings'));
-    }
+    // Mengubah status menjadi terlambat jika due date sudah lewat
+    Borrowing::where('status', 'dipinjam')
+        ->whereDate('due_date', '<', now()->toDateString())
+        ->update([
+            'status' => 'terlambat'
+        ]);
+
+    // Validasi input pencarian dan filter
+    $validated = $request->validate([
+        'search' => ['nullable', 'string', 'max:100'],
+        'status' => ['nullable', 'in:dipinjam,terlambat,dikembalikan'],
+        'date_from' => ['nullable', 'date_format:Y-m-d'],
+        'date_to' => ['nullable', 'date_format:Y-m-d', 'after_or_equal:date_from'],
+    ]);
+
+    // Query dasar transaksi peminjaman
+    $query = Borrowing::with([
+        'user',
+        'member'
+    ]);
+
+    // Searching berdasarkan nama anggota atau petugas
+    $query->when($validated['search'] ?? null, function ($query, $search) {
+        $query->where(function ($q) use ($search) {
+            $q->whereHas('member', function ($memberQuery) use ($search) {
+                $memberQuery->where('name', 'like', "%{$search}%");
+            })
+            ->orWhereHas('user', function ($userQuery) use ($search) {
+                $userQuery->where('name', 'like', "%{$search}%");
+            });
+        });
+    });
+
+    // Filtering berdasarkan status
+    $query->when($validated['status'] ?? null, function ($query, $status) {
+        $query->where('status', $status);
+    });
+
+    // Filtering berdasarkan tanggal mulai peminjaman
+    $query->when($validated['date_from'] ?? null, function ($query, $dateFrom) {
+        $query->whereDate('borrow_date', '>=', $dateFrom);
+    });
+
+    // Filtering berdasarkan tanggal akhir peminjaman
+    $query->when($validated['date_to'] ?? null, function ($query, $dateTo) {
+        $query->whereDate('borrow_date', '<=', $dateTo);
+    });
+
+    // Mengambil data dengan pagination
+    $borrowings = $query
+        ->latest()
+        ->paginate(10)
+        ->withQueryString();
+
+    return view('borrowings.index', compact('borrowings'));
+}
     // Menampilkan form tambah peminjaman
     public function create()
     {

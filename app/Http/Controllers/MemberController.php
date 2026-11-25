@@ -7,12 +7,42 @@ use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $members = Member::latest()->paginate(10);
+        $query = Member::query();
+        // Searching berdasarkan judul, penulis, atau penerbit
+        if ($request->filled('search')) {
+            $search = $request->search;
 
-        return view('members.index', compact('members'));
-    }
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('phone', 'like', "%{$search}%")
+                    ->orWhere('address', 'like', "%{$search}%");
+            });
+        }
+
+        // Filter berdasarkan alamat
+        if ($request->filled('address')) {
+            $query->where('address', $request->address);
+        }
+
+        // Urutkan dan tampilkan 10 data per halaman
+        $members = $query
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        // Data alamat untuk dropdown filter
+        $addresses = Member::select('address')
+            ->whereNotNull('address')
+            ->where('address', '!=', '')
+            ->distinct()
+            ->orderBy('address')
+            ->get();
+
+            return view('members.index', compact('members', 'addresses'));
+        }
 
     public function create()
     {

@@ -4,10 +4,13 @@
 ======================================== */
 
 .categories-page {
+    width: 100%;
     color: #032A42;
 }
 
-/* Page Header */
+/* ========================================
+   PAGE HEADER
+======================================== */
 
 .categories-page .page-header {
     display: flex;
@@ -27,6 +30,7 @@
 
 .categories-page .page-description {
     margin-top: 6px;
+    margin-bottom: 0;
     color: #666;
     font-size: 14px;
 }
@@ -42,12 +46,13 @@
     padding: 10px 16px;
     border: none;
     border-radius: 8px;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     transition: 0.2s ease;
-    font-family: inherit;
+    white-space: nowrap;
 }
 
 /* Primary Button */
@@ -81,6 +86,107 @@
 
 .categories-page .btn-delete:hover {
     background: #922d2d;
+}
+
+/* ========================================
+   SEARCHING / FILTER CARD
+======================================== */
+
+.categories-page .filter-card {
+    width: 100%;
+    background: #ffffff;
+    padding: 22px;
+    margin-bottom: 24px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+/* Filter Grid */
+
+.categories-page .filter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* Filter Group */
+
+.categories-page .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.categories-page .filter-group label {
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Search Input */
+
+.categories-page .search-group input {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #374151;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.categories-page .search-group input::placeholder {
+    color: #9ca3af;
+}
+
+.categories-page .search-group input:focus {
+    border-color: #032A42;
+    box-shadow: 0 0 0 3px rgba(3, 42, 66, 0.1);
+}
+
+/* Filter Actions */
+
+.categories-page .categories-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+/* Search Button */
+
+.categories-page .btn-filter {
+    min-width: 90px;
+    height: 42px;
+    padding: 0 18px;
+    background: #032A42;
+    color: #ffffff;
+    border: 1px solid #032A42;
+}
+
+.categories-page .btn-filter:hover {
+    background: #064363;
+    border-color: #064363;
+}
+
+/* Reset Button */
+
+.categories-page .btn-reset {
+    min-width: 90px;
+    height: 42px;
+    padding: 0 18px;
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.categories-page .btn-reset:hover {
+    background: #e5e7eb;
 }
 
 /* ========================================
@@ -125,8 +231,8 @@
 
 .categories-page .category-table {
     width: 100%;
-    border-collapse: collapse;
     min-width: 650px;
+    border-collapse: collapse;
 }
 
 .categories-page .category-table thead {
@@ -185,18 +291,138 @@
 ======================================== */
 
 .categories-page .pagination-wrapper {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
+    width: 100%;
+    margin-top: 24px;
 }
 
+.categories-page .pagination-wrapper nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Sembunyikan navigasi khusus mobile */
+
+.categories-page .pagination-wrapper nav > div:first-child {
+    display: none;
+}
+
+/* Navigasi desktop */
+
+.categories-page .pagination-wrapper nav > div:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    width: 100%;
+}
+
+/* Informasi jumlah data */
+
+.categories-page .pagination-wrapper nav p {
+    margin: 0;
+    color: #526777;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.categories-page .pagination-wrapper nav p span {
+    color: #032A42;
+    font-weight: 600;
+}
+
+/* Nomor halaman */
+
+.categories-page .pagination-wrapper nav > div:last-child > div:last-child > span {
+    display: inline-flex;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #D1E2F3;
+    border-radius: 8px;
+    background: #FFFFFF;
+}
+
+/* Link Pagination */
+
+.categories-page .pagination-wrapper nav a,
+.categories-page .pagination-wrapper nav span[aria-current="page"],
+.categories-page .pagination-wrapper nav span[aria-disabled="true"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    min-height: 38px;
+    padding: 8px 12px;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+/* Tombol halaman */
+
+.categories-page .pagination-wrapper nav a {
+    color: #032A42;
+    background: #FFFFFF;
+}
+
+.categories-page .pagination-wrapper nav a:hover {
+    color: #FFFFFF;
+    background: #032A42;
+}
+
+/* Halaman aktif */
+
+.categories-page .pagination-wrapper nav span[aria-current="page"] {
+    color: #FFFFFF;
+    background: #032A42;
+}
+
+/* Tombol nonaktif */
+
+.categories-page .pagination-wrapper nav span[aria-disabled="true"] {
+    color: #A0AAB2;
+    background: #F4F7F9;
+}
+
+/* Ikon pagination */
+
 .categories-page .pagination-wrapper nav svg {
-    height: 16px;
     width: 16px;
+    height: 16px;
 }
 
 /* ========================================
-   RESPONSIVE
+   RESPONSIVE TABLET
+======================================== */
+
+@media (max-width: 768px) {
+
+    .categories-page .filter-card {
+        padding: 18px;
+    }
+
+    .categories-page .page-header {
+        align-items: flex-start;
+    }
+
+    .categories-page .categories-actions {
+        width: 100%;
+    }
+
+    .categories-page .categories-actions .btn {
+        flex: 1;
+    }
+
+}
+
+/* ========================================
+   RESPONSIVE MOBILE
 ======================================== */
 
 @media (max-width: 600px) {
@@ -205,11 +431,50 @@
         font-size: 23px;
     }
 
+    .categories-page .page-description {
+        font-size: 13px;
+    }
+
     .categories-page .page-header {
+        flex-direction: column;
         align-items: flex-start;
+    }
+
+    .categories-page .page-header .btn-primary {
+        width: 100%;
+    }
+
+    .categories-page .filter-card {
+        padding: 16px;
+    }
+
+    .categories-page .categories-actions {
+        gap: 8px;
     }
 
     .categories-page .btn {
         padding: 9px 12px;
+        font-size: 13px;
     }
+
+    /* Pagination Mobile */
+
+    .categories-page .pagination-wrapper nav > div:last-child {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .categories-page .pagination-wrapper nav p {
+        font-size: 12px;
+    }
+
+    .categories-page .pagination-wrapper nav a,
+    .categories-page .pagination-wrapper nav span[aria-current="page"],
+    .categories-page .pagination-wrapper nav span[aria-disabled="true"] {
+        min-width: 34px;
+        min-height: 34px;
+        padding: 7px 10px;
+    }
+
 }
