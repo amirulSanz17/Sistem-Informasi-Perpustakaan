@@ -25,6 +25,140 @@
     font-size: 14px;
 }
 
+/* SEARCHING DAN FILTERING */
+.filter-container {
+    background: #ffffff;
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 24px;
+}
+
+.filter-top,
+.filter-bottom {
+    display: flex;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.filter-top {
+    margin-bottom: 18px;
+}
+
+.search-group {
+    flex: 2;
+}
+
+.status-group {
+    flex: 1;
+}
+
+.date-group {
+    flex: 1;
+}
+
+.search-group,
+.status-group,
+.date-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.search-group label,
+.status-group label,
+.date-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.search-group input,
+.status-group select,
+.date-group input {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-group input:focus,
+.status-group select:focus,
+.date-group input:focus {
+    border-color: #032A42;
+    box-shadow: 0 0 0 3px rgba(3, 42, 66, 0.1);
+}
+
+.filter-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-filter,
+.btn-reset {
+    height: 42px;
+    padding: 0 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.btn-filter {
+    background: #032A42;
+    color: #ffffff;
+    border: 1px solid #032A42;
+}
+
+.btn-filter:hover {
+    background: #064365;
+}
+
+.btn-reset {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.btn-reset:hover {
+    background: #e5e7eb;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .filter-top,
+    .filter-bottom {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-group,
+    .status-group,
+    .date-group {
+        width: 100%;
+    }
+
+    .filter-actions {
+        width: 100%;
+    }
+
+    .filter-actions .btn-filter,
+    .filter-actions .btn-reset {
+        flex: 1;
+    }
+}
+
 /* Button */
 
 .borrowings-page .btn {

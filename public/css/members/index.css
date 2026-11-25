@@ -1,6 +1,15 @@
+
+/* ========================================
+   MEMBERS PAGE
+======================================== */
+
 .members-page {
     color: #032A42;
 }
+
+/* ========================================
+   PAGE HEADER
+======================================== */
 
 .members-page .page-header {
     display: flex;
@@ -24,6 +33,10 @@
     font-size: 14px;
 }
 
+/* ========================================
+   GENERAL BUTTON
+======================================== */
+
 .members-page .btn {
     display: inline-flex;
     align-items: center;
@@ -38,6 +51,7 @@
     transition: 0.2s ease;
 }
 
+/* Tombol Tambah dan Detail */
 .members-page .btn-primary {
     background: #032A42;
     color: #fff;
@@ -47,6 +61,7 @@
     background: #064363;
 }
 
+/* Tombol Edit */
 .members-page .btn-edit {
     background: #D1E2F3;
     color: #032A42;
@@ -56,6 +71,7 @@
     background: #b9d4ed;
 }
 
+/* Tombol Hapus */
 .members-page .btn-delete {
     background: #b83b3b;
     color: #fff;
@@ -64,6 +80,116 @@
 .members-page .btn-delete:hover {
     background: #922d2d;
 }
+
+/* ========================================
+   FILTER CARD
+======================================== */
+
+.members-page .filter-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(3, 42, 66, 0.04);
+}
+
+/* Layout Search dan Filter */
+.members-page .filter-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    align-items: end;
+}
+
+/* Grup Input */
+.members-page .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.members-page .filter-group label {
+    color: #032A42;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Input Search dan Dropdown */
+.members-page .filter-group input,
+.members-page .filter-group select {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #374151;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;
+    transition: 0.2s ease;
+}
+
+/* Placeholder */
+.members-page .filter-group input::placeholder {
+    color: #9ca3af;
+}
+
+/* Focus Input dan Select */
+.members-page .filter-group input:focus,
+.members-page .filter-group select:focus {
+    border-color: #032A42;
+    box-shadow: 0 0 0 3px rgba(3, 42, 66, 0.10);
+}
+
+/* ========================================
+   FILTER ACTIONS
+======================================== */
+
+.members-page .members-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+/* Tombol Cari dan Reset */
+.members-page .members-actions .btn {
+    min-width: 90px;
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+
+/* Tombol Cari */
+.members-page .btn-filter {
+    background: #032A42;
+    color: #ffffff;
+    border: 1px solid #032A42;
+}
+
+.members-page .btn-filter:hover {
+    background: #064363;
+    border-color: #064363;
+}
+
+/* Tombol Reset */
+.members-page .btn-reset {
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.members-page .btn-reset:hover {
+    background: #e5e7eb;
+}
+
+/* ========================================
+   ALERT
+======================================== */
 
 .members-page .alert {
     margin-bottom: 20px;
@@ -77,6 +203,10 @@
     color: #216b35;
     border: 1px solid #b8e3c2;
 }
+
+/* ========================================
+   TABLE
+======================================== */
 
 .members-page .table-container {
     width: 100%;
@@ -118,6 +248,10 @@
     border-bottom: none;
 }
 
+/* ========================================
+   ACTION BUTTONS
+======================================== */
+
 .members-page .action-buttons {
     display: flex;
     gap: 8px;
@@ -135,9 +269,45 @@
     color: #777;
 }
 
+/* ========================================
+   PAGINATION
+======================================== */
+
 .members-page .pagination-wrapper {
-    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* ========================================
+   RESPONSIVE TABLET
+======================================== */
+
+@media (max-width: 768px) {
+
+    .members-page .filter-card {
+        padding: 18px;
+    }
+
+    .members-page .filter-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .members-page .members-actions {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/* ========================================
+   PAGINATION
+======================================== */
+
+.members-page .pagination-wrapper {
     width: 100%;
+    margin-top: 24px;
 }
 
 .members-page .pagination-wrapper nav {
@@ -149,9 +319,13 @@
     width: 100%;
 }
 
+/* Sembunyikan navigasi khusus mobile */
+
 .members-page .pagination-wrapper nav > div:first-child {
     display: none;
 }
+
+/* Navigasi desktop */
 
 .members-page .pagination-wrapper nav > div:last-child {
     display: flex;
@@ -161,6 +335,8 @@
     gap: 16px;
     width: 100%;
 }
+
+/* Informasi jumlah data */
 
 .members-page .pagination-wrapper nav p {
     margin: 0;
@@ -174,6 +350,8 @@
     font-weight: 600;
 }
 
+/* Nomor halaman */
+
 .members-page .pagination-wrapper nav > div:last-child > div:last-child > span {
     display: inline-flex;
     align-items: center;
@@ -182,6 +360,8 @@
     border-radius: 8px;
     background: #FFFFFF;
 }
+
+/* Link Pagination */
 
 .members-page .pagination-wrapper nav a,
 .members-page .pagination-wrapper nav span[aria-current="page"],
@@ -199,6 +379,8 @@
     transition: 0.2s ease;
 }
 
+/* Tombol halaman */
+
 .members-page .pagination-wrapper nav a {
     color: #032A42;
     background: #FFFFFF;
@@ -209,22 +391,37 @@
     background: #032A42;
 }
 
+/* Halaman aktif */
+
 .members-page .pagination-wrapper nav span[aria-current="page"] {
     color: #FFFFFF;
     background: #032A42;
 }
+
+/* Tombol nonaktif */
 
 .members-page .pagination-wrapper nav span[aria-disabled="true"] {
     color: #A0AAB2;
     background: #F4F7F9;
 }
 
+/* Ikon pagination */
+
 .members-page .pagination-wrapper nav svg {
     width: 16px;
     height: 16px;
 }
 
+/* ========================================
+   RESPONSIVE PAGINATION
+======================================== */
+
 @media (max-width: 600px) {
+
+    .members-page .pagination-wrapper {
+        margin-top: 24px;
+    }
+
     .members-page .pagination-wrapper nav > div:last-child {
         flex-direction: column;
         align-items: center;
@@ -242,10 +439,16 @@
         min-height: 34px;
         padding: 7px 10px;
     }
+
 }
 
 
+/* ========================================
+   RESPONSIVE MOBILE
+======================================== */
+
 @media (max-width: 600px) {
+
     .members-page .page-title {
         font-size: 23px;
     }
@@ -257,4 +460,18 @@
     .members-page .btn {
         padding: 9px 12px;
     }
+
+    .members-page .members-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .members-page .members-actions .btn {
+        width: 100%;
+    }
+
+    .members-page .pagination-wrapper {
+        justify-content: center;
+    }
+
 }

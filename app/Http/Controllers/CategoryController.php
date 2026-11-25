@@ -10,9 +10,23 @@ use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     // Menampilkan semua kategori
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::latest()->paginate(10);
+        $query = Category::query();
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                ->orWhere('description', 'like', "%{$search}%");
+            });
+        }
+
+        // Urutkan dan tampilkan 10 data per halaman
+        $categories = $query
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         return view('categories.index', compact('categories'));
     }

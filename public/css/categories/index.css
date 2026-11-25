@@ -4,10 +4,13 @@
 ======================================== */
 
 .categories-page {
+    width: 100%;
     color: #032A42;
 }
 
-/* Page Header */
+/* ========================================
+   PAGE HEADER
+======================================== */
 
 .categories-page .page-header {
     display: flex;
@@ -27,6 +30,7 @@
 
 .categories-page .page-description {
     margin-top: 6px;
+    margin-bottom: 0;
     color: #666;
     font-size: 14px;
 }
@@ -42,12 +46,13 @@
     padding: 10px 16px;
     border: none;
     border-radius: 8px;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     transition: 0.2s ease;
-    font-family: inherit;
+    white-space: nowrap;
 }
 
 /* Primary Button */
@@ -81,6 +86,107 @@
 
 .categories-page .btn-delete:hover {
     background: #922d2d;
+}
+
+/* ========================================
+   SEARCHING / FILTER CARD
+======================================== */
+
+.categories-page .filter-card {
+    width: 100%;
+    background: #ffffff;
+    padding: 22px;
+    margin-bottom: 24px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+}
+
+/* Filter Grid */
+
+.categories-page .filter-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* Filter Group */
+
+.categories-page .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.categories-page .filter-group label {
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Search Input */
+
+.categories-page .search-group input {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #374151;
+    font-family: inherit;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.categories-page .search-group input::placeholder {
+    color: #9ca3af;
+}
+
+.categories-page .search-group input:focus {
+    border-color: #032A42;
+    box-shadow: 0 0 0 3px rgba(3, 42, 66, 0.1);
+}
+
+/* Filter Actions */
+
+.categories-page .categories-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-top: 18px;
+}
+
+/* Search Button */
+
+.categories-page .btn-filter {
+    min-width: 90px;
+    height: 42px;
+    padding: 0 18px;
+    background: #032A42;
+    color: #ffffff;
+    border: 1px solid #032A42;
+}
+
+.categories-page .btn-filter:hover {
+    background: #064363;
+    border-color: #064363;
+}
+
+/* Reset Button */
+
+.categories-page .btn-reset {
+    min-width: 90px;
+    height: 42px;
+    padding: 0 18px;
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.categories-page .btn-reset:hover {
+    background: #e5e7eb;
 }
 
 /* ========================================
@@ -125,8 +231,8 @@
 
 .categories-page .category-table {
     width: 100%;
-    border-collapse: collapse;
     min-width: 650px;
+    border-collapse: collapse;
 }
 
 .categories-page .category-table thead {
@@ -180,14 +286,13 @@
     color: #777;
 }
 
-
 /* ========================================
    PAGINATION
 ======================================== */
 
 .categories-page .pagination-wrapper {
-    margin-top: 24px;
     width: 100%;
+    margin-top: 24px;
 }
 
 .categories-page .pagination-wrapper nav {
@@ -200,11 +305,13 @@
 }
 
 /* Sembunyikan navigasi khusus mobile */
+
 .categories-page .pagination-wrapper nav > div:first-child {
     display: none;
 }
 
 /* Navigasi desktop */
+
 .categories-page .pagination-wrapper nav > div:last-child {
     display: flex;
     align-items: center;
@@ -215,6 +322,7 @@
 }
 
 /* Informasi jumlah data */
+
 .categories-page .pagination-wrapper nav p {
     margin: 0;
     color: #526777;
@@ -227,7 +335,8 @@
     font-weight: 600;
 }
 
-/* Pembungkus nomor halaman */
+/* Nomor halaman */
+
 .categories-page .pagination-wrapper nav > div:last-child > div:last-child > span {
     display: inline-flex;
     align-items: center;
@@ -237,7 +346,8 @@
     background: #FFFFFF;
 }
 
-/* Link pagination */
+/* Link Pagination */
+
 .categories-page .pagination-wrapper nav a,
 .categories-page .pagination-wrapper nav span[aria-current="page"],
 .categories-page .pagination-wrapper nav span[aria-disabled="true"] {
@@ -255,6 +365,7 @@
 }
 
 /* Tombol halaman */
+
 .categories-page .pagination-wrapper nav a {
     color: #032A42;
     background: #FFFFFF;
@@ -266,25 +377,88 @@
 }
 
 /* Halaman aktif */
+
 .categories-page .pagination-wrapper nav span[aria-current="page"] {
     color: #FFFFFF;
     background: #032A42;
 }
 
 /* Tombol nonaktif */
+
 .categories-page .pagination-wrapper nav span[aria-disabled="true"] {
     color: #A0AAB2;
     background: #F4F7F9;
 }
 
-/* Ikon panah */
+/* Ikon pagination */
+
 .categories-page .pagination-wrapper nav svg {
     width: 16px;
     height: 16px;
 }
 
-/* Responsive */
+/* ========================================
+   RESPONSIVE TABLET
+======================================== */
+
+@media (max-width: 768px) {
+
+    .categories-page .filter-card {
+        padding: 18px;
+    }
+
+    .categories-page .page-header {
+        align-items: flex-start;
+    }
+
+    .categories-page .categories-actions {
+        width: 100%;
+    }
+
+    .categories-page .categories-actions .btn {
+        flex: 1;
+    }
+
+}
+
+/* ========================================
+   RESPONSIVE MOBILE
+======================================== */
+
 @media (max-width: 600px) {
+
+    .categories-page .page-title {
+        font-size: 23px;
+    }
+
+    .categories-page .page-description {
+        font-size: 13px;
+    }
+
+    .categories-page .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .categories-page .page-header .btn-primary {
+        width: 100%;
+    }
+
+    .categories-page .filter-card {
+        padding: 16px;
+    }
+
+    .categories-page .categories-actions {
+        gap: 8px;
+    }
+
+    .categories-page .btn {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    /* Pagination Mobile */
+
     .categories-page .pagination-wrapper nav > div:last-child {
         flex-direction: column;
         align-items: center;
@@ -302,23 +476,5 @@
         min-height: 34px;
         padding: 7px 10px;
     }
-}
 
-/* ========================================
-   RESPONSIVE
-======================================== */
-
-@media (max-width: 600px) {
-
-    .categories-page .page-title {
-        font-size: 23px;
-    }
-
-    .categories-page .page-header {
-        align-items: flex-start;
-    }
-
-    .categories-page .btn {
-        padding: 9px 12px;
-    }
 }

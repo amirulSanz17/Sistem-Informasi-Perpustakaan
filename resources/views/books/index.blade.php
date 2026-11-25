@@ -53,7 +53,7 @@
 
                 {{-- SEARCH --}}
                 <div class="filter-group search-group">
-                    <label for="search">Cari Buku</label>
+                    <label for="search">Pencarian</label>
 
                     <input
                         type="text"
