@@ -27,6 +27,21 @@
             </span>
         </div>
 
+        <div class="book-cover-section">
+            <span>Cover Buku</span>
+            @if ($book->cover_image)
+                <img
+                    src="{{ asset('storage/' . $book->cover_image) }}"
+                    alt="Cover {{ $book->title }}"
+                    class="book-detail-cover"
+                >
+            @else
+                <div class="no-cover">
+                    <span>Belum tersedia</span>
+                </div>
+            @endif
+        </div>
+
         <div class="detail-content">
             <div class="detail-item">
                 <span>Judul Buku</span>

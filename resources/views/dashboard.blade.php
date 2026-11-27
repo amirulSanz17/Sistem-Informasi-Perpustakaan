@@ -11,17 +11,19 @@
 
     <div class="dashboard-header">
         <div>
-            <h1>Halo, {{ auth()->user()->name }}! 👋</h1>
-            <p>Welcome back to Library System. Kelola aktivitas perpustakaan dengan mudah.</p>
+            <h1>Halo, {{ auth()->user()->name }}!</h1>
+            <p>
+                Selamat datang di Dashboard Library System.
+                Pantau koleksi buku, anggota, dan aktivitas peminjaman
+                perpustakaan melalui satu halaman.
+            </p>
         </div>
-
         <div class="dashboard-date">
-            {{ now()->format('d M Y') }}
+            {{ now()->translatedFormat('d F Y') }}
         </div>
     </div>
 
     <div class="dashboard-cards">
-
         <div class="dashboard-card">
             <div class="card-info">
                 <p>Total Books</p>
