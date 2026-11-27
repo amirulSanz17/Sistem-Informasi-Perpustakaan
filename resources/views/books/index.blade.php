@@ -44,17 +44,12 @@
         </div>
     @endif
 
-    {{-- SEARCHING DAN FILTERING --}}
     <div class="filter-card">
-
         <form action="{{ route('books.index') }}" method="GET">
-
             <div class="filter-grid">
 
-                {{-- SEARCH --}}
                 <div class="filter-group search-group">
                     <label for="search">Pencarian</label>
-
                     <input
                         type="text"
                         name="search"
@@ -64,13 +59,10 @@
                     >
                 </div>
 
-                {{-- FILTER KATEGORI --}}
                 <div class="filter-group">
                     <label for="category_id">Kategori</label>
-
                     <select name="category_id" id="category_id">
                         <option value="">Semua Kategori</option>
-
                         @foreach ($categories as $category)
                             <option
                                 value="{{ $category->id }}"
@@ -82,24 +74,16 @@
                     </select>
                 </div>
 
-                {{-- FILTER STOK --}}
                 <div class="filter-group">
                     <label for="stock_status">Ketersediaan Stok</label>
-
                     <select name="stock_status" id="stock_status">
                         <option value="">Semua Stok</option>
-
-                        <option
-                            value="available"
-                            {{ request('stock_status') === 'available' ? 'selected' : '' }}
-                        >
+                        <option value="available"
+                            {{ request('stock_status') === 'available' ? 'selected' : '' }}>
                             Tersedia
                         </option>
-
-                        <option
-                            value="out"
-                            {{ request('stock_status') === 'out' ? 'selected' : '' }}
-                        >
+                        <option value="out"
+                            {{ request('stock_status') === 'out' ? 'selected' : '' }}>
                             Habis
                         </option>
                     </select>
@@ -107,9 +91,7 @@
 
             </div>
 
-            {{-- TOMBOL FILTER --}}
             <div class="filter-actions">
-
                 <button type="submit" class="btn btn-filter">
                     Cari / Filter
                 </button>
@@ -117,14 +99,10 @@
                 <a href="{{ route('books.index') }}" class="btn btn-reset">
                     Reset
                 </a>
-
             </div>
-
         </form>
-
     </div>
 
-    {{-- INFORMASI HASIL --}}
     <div class="table-info">
         Menampilkan
         <strong>{{ $books->firstItem() ?? 0 }}–{{ $books->lastItem() ?? 0 }}</strong>
@@ -138,6 +116,7 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>Cover</th>
                     <th>Judul Buku</th>
                     <th>Penulis</th>
                     <th>Kategori</th>
@@ -149,50 +128,72 @@
             </thead>
 
             <tbody>
-                @forelse ($books as $book)
+                @if ($books->count() > 0)
+                    @foreach ($books as $book)
+                        <tr>
+                            <td>{{ $books->firstItem() + $loop->index }}</td>
+
+                            <td>
+                                @if ($book->cover_image)
+                                    <img
+                                        src="{{ asset('storage/' . $book->cover_image) }}"
+                                        alt="Cover {{ $book->title }}"
+                                        class="book-cover-thumbnail"
+                                    >
+                                @else
+                                    <div class="book-cover-empty">
+                                        No Cover
+                                    </div>
+                                @endif
+                            </td>
+
+                            <td>{{ $book->title }}</td>
+                            <td>{{ $book->author }}</td>
+                            <td>{{ $book->category->name }}</td>
+                            <td>{{ $book->publisher ?: '-' }}</td>
+                            <td>{{ $book->year ?: '-' }}</td>
+
+                            <td>
+                                <span class="stock-badge {{ $book->stock > 0 ? 'stock-available' : 'stock-empty' }}">
+                                    {{ $book->stock }}
+                                </span>
+                            </td>
+
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="{{ route('books.show', $book->id) }}"
+                                       class="btn btn-detail">
+                                        Detail
+                                    </a>
+
+                                    <a href="{{ route('books.edit', $book->id) }}"
+                                       class="btn btn-edit">
+                                        Edit
+                                    </a>
+
+                                    <form
+                                        action="{{ route('books.destroy', $book->id) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Yakin ingin menghapus buku ini?')"
+                                    >
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-delete">
+                                            Hapus
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>{{ $books->firstItem() + $loop->index }}</td>
-                        <td>{{ $book->title }}</td>
-                        <td>{{ $book->author }}</td>
-                        <td>{{ $book->category->name }}</td>
-                        <td>{{ $book->publisher ?: '-' }}</td>
-                        <td>{{ $book->year ?: '-' }}</td>
-                        <td>{{ $book->stock }}</td>
-
-                        <td>
-                            <div class="action-buttons">
-                                <a href="{{ route('books.show', $book->id) }}"
-                                   class="btn btn-detail">
-                                    Detail
-                                </a>
-
-                                <a href="{{ route('books.edit', $book->id) }}"
-                                   class="btn btn-edit">
-                                    Edit
-                                </a>
-
-                                <form
-                                    action="{{ route('books.destroy', $book->id) }}"
-                                    method="POST"
-                                    onsubmit="return confirm('Yakin ingin menghapus buku ini?')"
-                                >
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-delete">
-                                        Hapus
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="8" class="empty-state">
+                        <td colspan="9" class="empty-state">
                             Belum ada data buku.
                         </td>
                     </tr>
-                @endforelse
+                @endif
             </tbody>
         </table>
     </div>
