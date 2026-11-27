@@ -1,8 +1,6 @@
 
 /* =========================================
    ROOT & GLOBAL
-========================================= */
-
 :root {
     --prussian: #032A42;
     --columbia: #D1E2F3;
@@ -53,6 +51,10 @@ body {
 /* Brand */
 
 .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
     color: var(--prussian);
     font-size: 22px;
     font-weight: 700;
@@ -62,14 +64,6 @@ body {
 
 /* =========================================
    MENU WRAPPER
-========================================= */
-
-.app-menu {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex: 1;
-    gap: 20px;
 }
 
 /* =========================================
@@ -85,11 +79,11 @@ body {
 }
 
 .app-nav a {
-    padding: 10px 12px;
+    padding: 9px 11px;
     border-radius: 8px;
 
     color: var(--prussian);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     text-decoration: none;
 
@@ -134,56 +128,6 @@ body {
 
 /* =========================================
    HAMBURGER BUTTON
-========================================= */
-
-.menu-toggle {
-    display: none;
-
-    width: 42px;
-    height: 42px;
-    padding: 9px;
-
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-
-    border: 1px solid #D9C4AA;
-    border-radius: 8px;
-    background: #FFFFFF;
-
-    cursor: pointer;
-}
-
-.menu-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-
-    border-radius: 3px;
-    background: var(--prussian);
-
-    transition: 0.25s ease;
-}
-
-/* Animasi menjadi tanda X */
-
-.menu-toggle.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
-}
-
-.menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.menu-toggle.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
-}
-
-/* =========================================
-   MAIN CONTENT
-========================================= */
-
 .app-main {
     width: 100%;
     max-width: 1280px;
@@ -205,74 +149,6 @@ body {
 
 /* =========================================
    RESPONSIVE TABLET & MOBILE
-========================================= */
-
-@media (max-width: 900px) {
-
-    .app-header {
-        padding: 14px 20px;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    /* Tampilkan tombol hamburger */
-
-    .menu-toggle {
-        display: flex;
-        margin-left: auto;
-    }
-
-    /* Menu tersembunyi secara default */
-
-    .app-menu {
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-
-        width: 100%;
-        flex-basis: 100%;
-
-        padding: 15px 0 5px;
-        border-top: 1px solid #E9DFD2;
-    }
-
-    /* Menu muncul ketika tombol diklik */
-
-    .app-menu.is-open {
-        display: flex;
-    }
-
-    /* Navigasi menjadi vertikal */
-
-    .app-nav {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 4px;
-        width: 100%;
-    }
-
-    .app-nav a {
-        display: block;
-        padding: 12px 14px;
-        font-size: 15px;
-    }
-
-    .app-nav a:hover {
-        background: var(--wheat);
-    }
-
-    /* User information */
-
-    .user-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        width: 100%;
-        padding: 12px 14px;
-
-        border-top: 1px solid #E9DFD2;
     }
 
     .app-main {
@@ -282,24 +158,3 @@ body {
 
 /* =========================================
    MOBILE KECIL
-========================================= */
-
-@media (max-width: 400px) {
-
-    .app-header {
-        padding: 12px 15px;
-    }
-
-    .brand {
-        font-size: 20px;
-    }
-
-    .menu-toggle {
-        width: 40px;
-        height: 40px;
-    }
-
-    .app-main {
-        padding: 20px 12px;
-    }
-}

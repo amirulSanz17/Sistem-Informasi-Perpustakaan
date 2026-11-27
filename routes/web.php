@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\MemberController;
@@ -18,8 +19,11 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function () {
-        return redirect()->route('members.index');
+        return redirect()->route('dashboard');
     })->name('home');
+
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
