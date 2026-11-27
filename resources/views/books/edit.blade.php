@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form action="{{ route('books.update', $book->id) }}" method="POST">
+        <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -30,6 +30,32 @@
                 <label for="title">Judul Buku</label>
                 <input type="text" id="title" name="title"
                     value="{{ old('title', $book->title) }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cover_image">Cover Buku</label>
+                @if ($book->cover_image)
+                    <div class="current-cover">
+                        <img
+                            src="{{ asset('storage/' . $book->cover_image) }}"
+                            alt="Cover {{ $book->title }}"
+                            width="120"
+                        >
+                        <small>Cover saat ini</small>
+                    </div>
+                @endif
+                <input
+                    type="file"
+                    name="cover_image"
+                    id="cover_image"
+                    accept=".jpg,.jpeg,.png,.webp"
+                >
+                <small>
+                    Kosongkan jika tidak ingin mengganti cover.
+                </small>
+                @error('cover_image')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="form-group">

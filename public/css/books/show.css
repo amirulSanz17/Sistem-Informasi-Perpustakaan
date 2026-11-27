@@ -1,67 +1,157 @@
+
+/* =========================================
+   DETAIL BOOK
+========================================= */
+
 .books-show-page {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 8px 0 25px;
     color: #032A42;
 }
+
+/* =========================================
+   PAGE HEADER
+========================================= */
 
 .books-show-page .page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
     gap: 15px;
+    margin-bottom: 10px;
 }
 
 .books-show-page h1 {
-    margin-bottom: 8px;
-    font-size: 28px;
+    margin: 0 0 5px;
+    font-size: 27px;
     color: #032A42;
 }
 
 .books-show-page .subtitle {
+    margin: 0;
     color: #526777;
+    font-size: 14px;
 }
 
+/* =========================================
+   DETAIL CARD
+========================================= */
+
 .books-show-page .detail-card {
+    width: 100%;
     max-width: 850px;
-    padding: 30px;
-    background: #fff;
+    margin: 0 auto;
+    padding: 24px 30px;
+
+    background: #FFFFFF;
     border-radius: 14px;
     box-shadow: 0 4px 18px rgba(3, 42, 66, 0.08);
 }
+
+/* =========================================
+   DETAIL HEADER
+========================================= */
 
 .books-show-page .detail-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 15px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #e5eaf0;
+
+    padding-bottom: 14px;
+    margin-bottom: 17px;
+
+    border-bottom: 1px solid #E5EAF0;
 }
 
 .books-show-page .detail-header h2 {
-    font-size: 22px;
+    margin: 0;
+    font-size: 21px;
     color: #032A42;
 }
 
 .books-show-page .book-category {
     padding: 7px 13px;
     border-radius: 20px;
+
     background: #D1E2F3;
     color: #032A42;
+
     font-size: 13px;
     font-weight: 600;
 }
 
+/* =========================================
+   BOOK COVER
+========================================= */
+
+.books-show-page .book-cover-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+
+    margin: 0 auto 18px;
+}
+
+.books-show-page .book-cover-section > span {
+    color: #526777;
+    font-size: 13px;
+}
+
+.books-show-page .book-detail-cover {
+    display: block;
+    width: 120px;
+    height: 180px;
+
+    object-fit: cover;
+    object-position: center;
+
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(3, 42, 66, 0.12);
+}
+
+.books-show-page .no-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 180px;
+
+    border: 1px dashed #B3926F;
+    border-radius: 8px;
+
+    background: #F8FAFC;
+    color: #9CA3AF;
+    font-size: 13px;
+}
+
+/* =========================================
+   DETAIL INFORMATION
+========================================= */
+
 .books-show-page .detail-content {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    width: 100%;
+    max-width: 740px;
+    margin: 0 auto;
+
+    column-gap: 55px;
+    row-gap: 14px;
 }
 
 .books-show-page .detail-item {
     display: flex;
     flex-direction: column;
-    gap: 7px;
+    gap: 4px;
+    min-width: 0;
 }
 
 .books-show-page .detail-item span {
@@ -71,16 +161,25 @@
 
 .books-show-page .detail-item strong {
     color: #032A42;
-    font-size: 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
 }
+
+/* =========================================
+   ACTION BUTTONS
+========================================= */
 
 .books-show-page .detail-actions {
     display: flex;
+    justify-content: center;
     align-items: center;
     gap: 10px;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #e5eaf0;
+
+    margin-top: 18px;
+    padding-top: 15px;
+
+    border-top: 1px solid #E5EAF0;
 }
 
 .books-show-page .detail-actions form {
@@ -92,17 +191,26 @@
 .books-show-page .btn-delete {
     display: inline-block;
     padding: 10px 17px;
+
     border: none;
     border-radius: 8px;
+
     text-decoration: none;
+    text-align: center;
     font-size: 14px;
     font-weight: 600;
+
     cursor: pointer;
+    transition: background 0.2s ease;
 }
 
 .books-show-page .btn-secondary {
     background: #B3926F;
-    color: white;
+    color: #FFFFFF;
+}
+
+.books-show-page .btn-secondary:hover {
+    background: #987653;
 }
 
 .books-show-page .btn-edit {
@@ -110,23 +218,67 @@
     color: #032A42;
 }
 
-.books-show-page .btn-delete {
-    background: #b83b3b;
-    color: white;
+.books-show-page .btn-edit:hover {
+    background: #B9D4ED;
 }
 
-@media (max-width: 600px) {
+.books-show-page .btn-delete {
+    background: #B83B3B;
+    color: #FFFFFF;
+}
+
+.books-show-page .btn-delete:hover {
+    background: #982E2E;
+}
+
+/* =========================================
+   RESPONSIVE TABLET
+========================================= */
+
+@media (max-width: 768px) {
+
+    .books-show-page {
+        padding-top: 5px;
+    }
+
     .books-show-page .detail-card {
-        padding: 20px;
+        padding: 22px 20px;
+    }
+
+    .books-show-page .detail-content {
+        column-gap: 25px;
+    }
+}
+
+/* =========================================
+   RESPONSIVE MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .books-show-page .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .books-show-page .detail-header {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .books-show-page .detail-content {
         grid-template-columns: 1fr;
+        gap: 13px;
     }
 
-    .books-show-page .detail-header,
-    .books-show-page .page-header {
-        align-items: flex-start;
-        flex-direction: column;
+    .books-show-page .detail-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .books-show-page .book-detail-cover,
+    .books-show-page .no-cover {
+        width: 110px;
+        height: 165px;
     }
 }
