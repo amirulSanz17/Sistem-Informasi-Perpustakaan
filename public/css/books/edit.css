@@ -92,82 +92,8 @@
     background: #987653;
 }
 
-.books-form-page .current-cover {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 14px;
-    padding: 14px;
-    width: fit-content;
-    background: #f8fafc;
-    border: 1px solid #e5eaf0;
-    border-radius: 10px;
-}
-
-.books-form-page .current-cover img {
-    display: block;
-    width: 120px;
-    height: 180px;
-    object-fit: cover;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    box-shadow: 0 2px 6px rgba(3, 42, 66, 0.10);
-}
-
-.books-form-page .current-cover small {
-    color: #526777;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.books-form-page .form-group input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px dashed #B3926F;
-    border-radius: 8px;
-    background: #f8fafc;
-    color: #526777;
-    font-size: 13px;
-    cursor: pointer;
-}
-
-.books-form-page .form-group input[type="file"]:hover {
-    border-color: #032A42;
-    background: #f1f6fa;
-}
-
-.books-form-page .form-group input[type="file"]::file-selector-button {
-    margin-right: 12px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 6px;
-    background: #D1E2F3;
-    color: #032A42;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.books-form-page .form-group input[type="file"]::file-selector-button:hover {
-    background: #b9d4ed;
-}
-
-.books-form-page .form-group small {
-    display: block;
-    margin-top: 7px;
-    color: #64748b;
-    font-size: 12px;
-    line-height: 1.5;
-}
-
-.books-form-page .form-group .text-danger {
-    color: #b42318;
-    font-weight: 500;
-}
-
 @media (max-width: 600px) {
     .books-form-page .form-card {
         padding: 20px;
     }
 }
-
