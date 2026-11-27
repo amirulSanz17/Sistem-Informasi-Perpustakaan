@@ -22,7 +22,7 @@
             </div>
         @endif
 
-        <form action="{{ route('books.store') }}" method="POST">
+        <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="form-group">
@@ -66,6 +66,22 @@
                 <label for="stock">Stok Buku</label>
                 <input type="number" id="stock" name="stock"
                     value="{{ old('stock', 0) }}" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cover_image">Cover Buku</label>
+                <input
+                    type="file"
+                    name="cover_image"
+                    id="cover_image"
+                    accept=".jpg,.jpeg,.png,.webp"
+                >
+                <small>
+                    Format JPG, JPEG, PNG, atau WEBP. Maksimal 2 MB.
+                </small>
+                @error('cover_image')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <div class="actions">

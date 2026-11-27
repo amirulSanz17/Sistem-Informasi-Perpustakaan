@@ -1,4 +1,8 @@
 
+/* =========================================
+   ROOT & GLOBAL
+========================================= */
+
 :root {
     --prussian: #032A42;
     --columbia: #D1E2F3;
@@ -17,6 +21,7 @@ body {
     min-height: 100vh;
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--prussian);
+
     background: linear-gradient(
         110deg,
         var(--beige) 0%,
@@ -25,43 +30,79 @@ body {
     );
 }
 
+/* =========================================
+   HEADER
+========================================= */
+
 .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    flex-wrap: wrap;
-    padding: 20px 40px;
+
+    padding: 16px 40px;
+
     background: #FFFFFF;
     border-bottom: 1px solid #D9C4AA;
 }
+
+/* Brand */
 
 .brand {
     color: var(--prussian);
     font-size: 22px;
     font-weight: 700;
     text-decoration: none;
+    white-space: nowrap;
 }
+
+/* =========================================
+   MENU WRAPPER
+========================================= */
+
+.app-menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: 20px;
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
 
 .app-nav {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .app-nav a {
     padding: 10px 12px;
     border-radius: 8px;
+
     color: var(--prussian);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
+
     transition: 0.2s;
 }
 
 .app-nav a:hover {
     background: var(--wheat);
 }
+
+/* =========================================
+   USER INFORMATION
+========================================= */
 
 .user-info {
     display: flex;
@@ -79,11 +120,69 @@ body {
     padding: 9px 13px;
     border: none;
     border-radius: 8px;
+
     background: #8B3030;
     color: #FFFFFF;
+
     font-weight: 600;
     cursor: pointer;
 }
+
+.logout-button:hover {
+    background: #702424;
+}
+
+/* =========================================
+   HAMBURGER BUTTON
+========================================= */
+
+.menu-toggle {
+    display: none;
+
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    border: 1px solid #D9C4AA;
+    border-radius: 8px;
+    background: #FFFFFF;
+
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+
+    border-radius: 3px;
+    background: var(--prussian);
+
+    transition: 0.25s ease;
+}
+
+/* Animasi menjadi tanda X */
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
 
 .app-main {
     width: 100%;
@@ -93,6 +192,10 @@ body {
     padding: 36px 24px;
 }
 
+/* =========================================
+   FOOTER
+========================================= */
+
 .app-footer {
     padding: 20px;
     text-align: center;
@@ -100,12 +203,103 @@ body {
     border-top: 1px solid #E9DFD2;
 }
 
-@media (max-width: 700px) {
+/* =========================================
+   RESPONSIVE TABLET & MOBILE
+========================================= */
+
+@media (max-width: 900px) {
+
     .app-header {
-        padding: 20px;
+        padding: 14px 20px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    /* Tampilkan tombol hamburger */
+
+    .menu-toggle {
+        display: flex;
+        margin-left: auto;
+    }
+
+    /* Menu tersembunyi secara default */
+
+    .app-menu {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+
+        width: 100%;
+        flex-basis: 100%;
+
+        padding: 15px 0 5px;
+        border-top: 1px solid #E9DFD2;
+    }
+
+    /* Menu muncul ketika tombol diklik */
+
+    .app-menu.is-open {
+        display: flex;
+    }
+
+    /* Navigasi menjadi vertikal */
+
+    .app-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        width: 100%;
+    }
+
+    .app-nav a {
+        display: block;
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+
+    .app-nav a:hover {
+        background: var(--wheat);
+    }
+
+    /* User information */
+
+    .user-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+        padding: 12px 14px;
+
+        border-top: 1px solid #E9DFD2;
     }
 
     .app-main {
         padding: 24px 14px;
+    }
+}
+
+/* =========================================
+   MOBILE KECIL
+========================================= */
+
+@media (max-width: 400px) {
+
+    .app-header {
+        padding: 12px 15px;
+    }
+
+    .brand {
+        font-size: 20px;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .app-main {
+        padding: 20px 12px;
     }
 }
