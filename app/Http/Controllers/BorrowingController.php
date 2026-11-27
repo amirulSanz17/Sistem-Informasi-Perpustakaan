@@ -12,7 +12,6 @@ use Carbon\Carbon;
 
 class BorrowingController extends Controller
 {
-    // Menampilkan seluruh transaksi peminjaman
     public function index(Request $request)
     {
     // Mengubah status menjadi terlambat jika due date sudah lewat
@@ -30,11 +29,7 @@ class BorrowingController extends Controller
         'date_to' => ['nullable', 'date_format:Y-m-d', 'after_or_equal:date_from'],
     ]);
 
-    // Query dasar transaksi peminjaman
-    $query = Borrowing::with([
-        'user',
-        'member'
-    ]);
+    $query = Borrowing::with(['user','member']);
 
     // Searching berdasarkan nama anggota atau petugas
     $query->when($validated['search'] ?? null, function ($query, $search) {
@@ -72,18 +67,32 @@ class BorrowingController extends Controller
     return view('borrowings.index', compact('borrowings'));
 }
     // Menampilkan form tambah peminjaman
-    public function create()
+    public function create(Request $request)
     {
-        $members = Member::orderBy('name')->get();
+        $memberQuery = Member::query();
+
+        // Pencarian berdasarkan nama anggota
+        if ($request->filled('member_search')) {
+            $search = trim($request->member_search);
+
+            $memberQuery->where('name', 'like', "%{$search}%");
+        }
+
+        // Mengambil hasil pencarian anggota
+        $members = $memberQuery
+            ->orderBy('name')
+            ->get();
+
+        // Mengambil buku yang memiliki stok tersedia
         $books = Book::where('stock', '>', 0)
             ->orderBy('title')
             ->get();
+
         return view('borrowings.create', compact(
             'members',
             'books'
         ));
     }
-    // Menyimpan transaksi peminjaman
     public function store(Request $request)
     {
         $validated = $request->validate([

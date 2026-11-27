@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'Tambah Peminjaman')
@@ -8,6 +7,7 @@
 @endpush
 
 @section('content')
+
 <div class="container borrowings-page">
     <div class="page-header">
         <div>
@@ -21,7 +21,7 @@
             Kembali
         </a>
     </div>
-    {{-- NOTIFIKASI VALIDASI --}}
+
     @if ($errors->any())
         <div class="alert alert-error">
             <ul>
@@ -31,29 +31,56 @@
             </ul>
         </div>
     @endif
+
     <form
+        id="borrowingForm"
         action="{{ route('borrowings.store') }}"
         method="POST"
         class="borrowing-form"
     >
         @csrf
-        {{-- INFORMASI PEMINJAMAN --}}
+        <div class="form-section">
+            <h3>Informasi Anggota</h3>
+            <div class="form-group">
+                <label for="member_search">Cari Nama Anggota</label>
+                <input
+                    type="text"
+                    id="member_search"
+                    placeholder="Ketik nama anggota..."
+                    autocomplete="off"
+                >
+                <small>
+                    Ketik nama anggota untuk mencari dan memilih anggota.
+                </small>
+            </div>
+            <div class="member-list" id="member-list">
+                @forelse ($members as $member)
+                    <label
+                        class="member-result"
+                        data-name="{{ strtolower($member->name) }}"
+                    >
+                        <input
+                            type="radio"
+                            name="member_id"
+                            value="{{ $member->id }}"
+                            {{ old('member_id') == $member->id ? 'checked' : '' }}
+                            required
+                        >
+                        <span>{{ $member->name }}</span>
+                    </label>
+                @empty
+                    <p class="member-not-found">
+                        Belum ada data anggota.
+                    </p>
+                @endforelse
+            </div>
+            <p class="member-empty" id="member-empty" hidden>
+                Anggota tidak ditemukan.
+            </p>
+        </div>
+
         <div class="form-section">
             <h3>Informasi Peminjaman</h3>
-            <div class="form-group">
-                <label for="member_id">Nama Anggota</label>
-                <select name="member_id" id="member_id" required>
-                    <option value="">-- Pilih Anggota --</option>
-                    @foreach ($members as $member)
-                        <option
-                            value="{{ $member->id }}"
-                            {{ old('member_id') == $member->id ? 'selected' : '' }}
-                        >
-                            {{ $member->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
             <div class="form-group">
                 <label for="borrow_date">Tanggal Peminjaman</label>
                 <input
@@ -82,7 +109,7 @@
                 </small>
             </div>
         </div>
-        {{-- DAFTAR BUKU --}}
+
         <div class="form-section">
             <div class="section-header">
                 <div>
@@ -99,12 +126,12 @@
                     + Tambah Buku
                 </button>
             </div>
+            @php
+                $oldItems = old('items', [
+                    ['book_id' => '', 'quantity' => 1]
+                ]);
+            @endphp
             <div id="book-items">
-                @php
-                    $oldItems = old('items', [
-                        ['book_id' => '', 'quantity' => 1]
-                    ]);
-                @endphp
                 @foreach ($oldItems as $index => $oldItem)
                     <div class="book-item">
                         <div class="form-group book-select">
@@ -119,7 +146,8 @@
                                         value="{{ $book->id }}"
                                         {{ ($oldItem['book_id'] ?? '') == $book->id ? 'selected' : '' }}
                                     >
-                                        {{ $book->title }} (Stok: {{ $book->stock }})
+                                        {{ $book->title }}
+                                        (Stok: {{ $book->stock }})
                                     </option>
                                 @endforeach
                             </select>
@@ -137,7 +165,6 @@
                         <button
                             type="button"
                             class="btn btn-remove"
-                            onclick="removeBook(this)"
                         >
                             Hapus
                         </button>
@@ -145,9 +172,12 @@
                 @endforeach
             </div>
         </div>
-        {{-- TOMBOL AKSI --}}
+
         <div class="form-actions">
-            <a href="{{ route('borrowings.index') }}" class="btn btn-back">
+            <a
+                href="{{ route('borrowings.index') }}"
+                class="btn btn-back"
+            >
                 Batal
             </a>
             <button type="submit" class="btn btn-primary">
@@ -158,10 +188,52 @@
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('member_search');
+    const memberResults = document.querySelectorAll('.member-result');
+    const emptyMessage = document.getElementById('member-empty');
+
+    searchInput.addEventListener('input', function () {
+        const keyword = this.value.toLowerCase().trim();
+        let found = 0;
+        memberResults.forEach(function (member) {
+            const name = member.dataset.name;
+            const match = name.includes(keyword);
+            member.style.display = match ? 'flex' : 'none';
+            if (match) {
+                found++;
+            }
+        });
+        emptyMessage.hidden = found !== 0;
+    });
+
+    const memberSearch = document.getElementById('member_search');
+    const memberList = document.querySelector('.member-list');
+
+    memberSearch.addEventListener('input', function () {
+        const keyword = this.value.toLowerCase().trim();
+        const members = document.querySelectorAll('.member-result');
+        let found = 0;
+        members.forEach(function (member) {
+            const name = member.querySelector('span').textContent.toLowerCase();
+            if (keyword !== '' && name.includes(keyword)) {
+                member.style.display = 'flex';
+                found++;
+            } else {
+                member.style.display = 'none';
+            }
+        });
+        if (keyword !== '' && found > 0) {
+            memberList.classList.add('show');
+        } else {
+            memberList.classList.remove('show');
+        }
+    });
+
     let bookIndex = {{ count($oldItems) }};
-    // Menambahkan pilihan buku
-    document.getElementById('add-book').addEventListener('click', function () {
-        const container = document.getElementById('book-items');
+    const addBookButton = document.getElementById('add-book');
+    const bookContainer = document.getElementById('book-items');
+    addBookButton.addEventListener('click', function () {
         const item = document.createElement('div');
         item.className = 'book-item';
         item.innerHTML = `
@@ -186,25 +258,25 @@
                     required
                 >
             </div>
-            <button
-                type="button"
-                class="btn btn-remove"
-                onclick="removeBook(this)"
-            >
+            <button type="button" class="btn btn-remove">
                 Hapus
             </button>
         `;
-        container.appendChild(item);
+        bookContainer.appendChild(item);
         bookIndex++;
     });
-    // Menghapus pilihan buku
-    function removeBook(button) {
-        const container = document.getElementById('book-items');
-        if (container.children.length <= 1) {
+
+    bookContainer.addEventListener('click', function (event) {
+        if (!event.target.classList.contains('btn-remove')) {
+            return;
+        }
+        if (bookContainer.children.length <= 1) {
             alert('Minimal harus ada satu buku.');
             return;
         }
-        button.closest('.book-item').remove();
-    }
+        event.target.closest('.book-item').remove();
+    });
+});
 </script>
+
 @endsection
