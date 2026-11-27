@@ -1,6 +1,3 @@
-
-/* =========================================
-   ROOT & GLOBAL
 :root {
     --prussian: #032A42;
     --columbia: #D1E2F3;
@@ -19,7 +16,6 @@ body {
     min-height: 100vh;
     font-family: "Segoe UI", Arial, sans-serif;
     color: var(--prussian);
-
     background: linear-gradient(
         110deg,
         var(--beige) 0%,
@@ -28,27 +24,16 @@ body {
     );
 }
 
-/* =========================================
-   HEADER
-========================================= */
-
 .app-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-
-    padding: 16px 40px;
-
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 14px 32px;
     background: #FFFFFF;
     border-bottom: 1px solid #D9C4AA;
 }
-
-/* Brand */
 
 .brand {
     display: flex;
@@ -58,45 +43,37 @@ body {
     color: var(--prussian);
     font-size: 22px;
     font-weight: 700;
-    text-decoration: none;
     white-space: nowrap;
 }
 
-/* =========================================
-   MENU WRAPPER
+.brand img {
+    display: block;
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    border-radius: 50%;
 }
-
-/* =========================================
-   NAVIGATION
-========================================= */
 
 .app-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
 .app-nav a {
     padding: 9px 11px;
     border-radius: 8px;
-
     color: var(--prussian);
     font-size: 13px;
     font-weight: 600;
     text-decoration: none;
-
     transition: 0.2s;
 }
 
 .app-nav a:hover {
     background: var(--wheat);
 }
-
-/* =========================================
-   USER INFORMATION
-========================================= */
 
 .user-info {
     display: flex;
@@ -114,20 +91,16 @@ body {
     padding: 9px 13px;
     border: none;
     border-radius: 8px;
-
     background: #8B3030;
     color: #FFFFFF;
-
     font-weight: 600;
     cursor: pointer;
 }
 
 .logout-button:hover {
-    background: #702424;
+    background: #702525;
 }
 
-/* =========================================
-   HAMBURGER BUTTON
 .app-main {
     width: 100%;
     max-width: 1280px;
@@ -136,10 +109,6 @@ body {
     padding: 36px 24px;
 }
 
-/* =========================================
-   FOOTER
-========================================= */
-
 .app-footer {
     padding: 20px;
     text-align: center;
@@ -147,14 +116,17 @@ body {
     border-top: 1px solid #E9DFD2;
 }
 
-/* =========================================
-   RESPONSIVE TABLET & MOBILE
+
+@media (max-width: 700px) {
+    .app-header {
+        padding: 16px 20px;
     }
 
     .app-main {
         padding: 24px 14px;
     }
-}
 
-/* =========================================
-   MOBILE KECIL
+    .app-nav {
+        width: 100%;
+    }
+}

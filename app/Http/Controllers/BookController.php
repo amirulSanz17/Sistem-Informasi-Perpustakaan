@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class BookController extends Controller
 {
@@ -60,17 +59,11 @@ class BookController extends Controller
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|string|max:255',
-            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'author' => 'required|string|max:255',
             'publisher' => 'nullable|string|max:255',
             'year' => 'nullable|integer|min:1000|max:' . date('Y'),
             'stock' => 'required|integer|min:0',
         ]);
-
-        if ($request->hasFile('cover_image')) {
-        $validated['cover_image'] = $request->file('cover_image')
-            ->store('covers', 'public');
-        }
 
         Book::create($validated);
 
@@ -101,22 +94,11 @@ class BookController extends Controller
         $validated = $request->validate([
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|string|max:255',
-            'cover_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'author' => 'required|string|max:255',
             'publisher' => 'nullable|string|max:255',
             'year' => 'nullable|integer|min:1000|max:' . date('Y'),
             'stock' => 'required|integer|min:0',
         ]);
-
-        if ($request->hasFile('cover_image')) {
-            // Hapus cover lama
-            if ($book->cover_image) {
-                Storage::disk('public')->delete($book->cover_image);
-            }
-            // Simpan cover baru
-            $validated['cover_image'] = $request->file('cover_image')
-                ->store('covers', 'public');
-        }
 
         $book->update($validated);
 
@@ -134,11 +116,9 @@ class BookController extends Controller
                 ->route('books.index')
                 ->with('error', 'Buku tidak dapat dihapus karena sudah memiliki riwayat peminjaman.');
         }
-        if ($book->cover_image) {
-            Storage::disk('public')->delete($book->cover_image);
-        }
 
         $book->delete();
+
         return redirect()
             ->route('books.index')
             ->with('success', 'Buku berhasil dihapus.');

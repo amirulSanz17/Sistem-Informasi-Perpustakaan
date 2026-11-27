@@ -6,8 +6,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 25px;
     gap: 15px;
-    margin-bottom: 8px;
 }
 
 .books-show-page h1 {
@@ -113,65 +113,6 @@
 .books-show-page .btn-delete {
     background: #b83b3b;
     color: white;
-}
-
-.books-show-page > .detail-card > .detail-item {
-    margin-bottom: 25px;
-    padding: 18px;
-    background: #f8fafc;
-    border: 1px solid #e5eaf0;
-    border-radius: 10px;
-}
-
-.books-show-page .book-detail-cover {
-    display: block;
-    width: 150px;
-    height: 225px;
-    margin-top: 8px;
-    object-fit: cover;
-    object-position: center;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    box-shadow: 0 3px 10px rgba(3, 42, 66, 0.12);
-}
-
-.books-show-page .detail-item strong {
-    line-height: 1.5;
-}
-
-.books-show-page .book-cover-section {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.books-show-page .book-cover-section > span {
-    color: #526777;
-    font-size: 13px;
-}
-
-.books-show-page .no-cover {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    height: 225px;
-    border: 1px dashed #B3926F;
-    border-radius: 8px;
-    background: #f8fafc;
-    color: #9ca3af;
-    font-size: 13px;
-}
-
-/* Responsive Cover */
-
-@media (max-width: 600px) {
-    .books-show-page .book-detail-cover {
-        width: 130px;
-        height: 195px;
-    }
 }
 
 @media (max-width: 600px) {
