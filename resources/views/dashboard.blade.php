@@ -31,6 +31,13 @@
             </div>
         </div>
 
+    <div class="dashboard-card">
+        <div class="card-info">
+            <p>Total Stock</p>
+            <h2>{{ $totalStock }}</h2>
+        </div>
+        </div>
+
         <div class="dashboard-card">
             <div class="card-info">
                 <p>Total Members</p>
